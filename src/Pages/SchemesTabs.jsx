@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box, Typography,Grid} from "@mui/material";
 import InfoCard from "../Components/InfoCard";
-import schemesdata from "../data/schemesData";
+import schemesdata from "../data/dropdowndata/schemedata";
 function TabPanel({ children, value, index }) {
   return (
     <div

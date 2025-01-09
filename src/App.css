@@ -1,0 +1,51 @@
+/* Default sidebar style (hidden by default) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;  /* Initially hidden off-screen */
+  height: 100%;
+  width: 250px;
+  background-color: #333;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 999;
+}
+
+.sidebar.show {
+  left: 0;  /* When the sidebar is visible */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 8px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+.sidebar a:hover {
+  background-color: #575757;
+}
+
+/* Ensures the navbar button is visible on mobile screens */
+.navbar-toggler {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    display: none; /* Sidebar is not needed on larger screens */
+  }
+  .navbar-toggler {
+    display: none; /* Hide hamburger menu on larger screens */
+  }
+}
+

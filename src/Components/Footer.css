@@ -1,0 +1,7 @@
+@media (min-width: 992px) { /* lg breakpoint */
+    .bottom-fixed-lg {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  }

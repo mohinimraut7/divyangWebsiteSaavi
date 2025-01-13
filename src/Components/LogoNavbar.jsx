@@ -1,4 +1,3 @@
-import vvmcfulllogo from '../assets/vvcmcfulllogo.png';
 import logo from '../assets/logo.jpg';
 import secimglogo from '../assets/logonavsecimg.jpg';
 import mahanagarpalikaapp from '../assets/mahanagarpalikaapp.png';

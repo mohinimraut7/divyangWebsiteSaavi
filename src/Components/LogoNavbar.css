@@ -2,14 +2,10 @@
    border:'1px solid red' !important;
    box-shadow: 0px 0px 10px 10px #fbfbfb;
 margin:0px 10px 2px 0px !important;
-   /* display:flex;
-   justify-content: center;
-   align-items: center; */
-}
+   }
 .contactdiv{
 line-height: 14px;
 }
-
 .logo-title{
     color:#007338;
     text-transform:capitalize;
@@ -19,8 +15,6 @@ line-height: 14px;
     word-spacing: 0px;
 }
 .logowithtext{
-/* border:1px solid red; */
-display:flex;
 align-items: center;
 }
 

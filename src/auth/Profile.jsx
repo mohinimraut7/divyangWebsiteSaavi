@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import axios from 'axios';
-import backgroundimage from '../assets/profilebackgroundimage.avif'
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); 
@@ -17,18 +17,18 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        // Replace token with the actual token stored in localStorage or state
+       
         const token = localStorage.getItem('token');
        
         // const response = await axios.get('https://divyyang-vvcmc-schemes-1.onrender.com/api/profile', {
           const response = await axios.get(' https://divyang.codifyinstitute.org/api/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setUser(response.data.user); // Set user data in state
-        setLoading(false); // Stop loading indicator
+        setUser(response.data.user); 
+        setLoading(false); 
       } catch (error) {
         console.error('Error fetching user profile:', error);
-        setLoading(false); // Stop loading even on error
+        setLoading(false); 
       }
     };
 
@@ -60,7 +60,7 @@ const Profile = () => {
 
   return (
     <Grid container spacing={2} sx={{ mt: 4, px: 3 }}>
-      {/* Profile Information */}
+    
       <Grid item xs={12} sm={4} sx={{ textAlign: 'center' }}>
         <Avatar sx={{ width: 80, height: 80, margin: '0 auto', mb: 2 }}>
           <PersonIcon sx={{ fontSize: 40 }} />
@@ -71,7 +71,7 @@ const Profile = () => {
         </Typography>
       </Grid>
 
-      {/* Profile Form */}
+    
       <Grid
         item
         xs={12}

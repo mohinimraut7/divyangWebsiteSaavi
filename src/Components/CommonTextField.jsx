@@ -49,7 +49,7 @@ const CommonTextField = ({
       }}
       sx={{
         mb: 2,
-        width: isAuthPath ? '100%' : '70%',
+        width: isAuthPath ? '100%' : '90%',
        
       }}
       {...props}

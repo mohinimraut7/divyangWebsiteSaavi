@@ -12,7 +12,8 @@ import schemedata from "../data/dropdowndata/schemedata";
 import genderdata from "../data/dropdowndata/genderdata";
 import marriedstatusdata from "../data/dropdowndata/marriedstatusdata";
 import castedata from "../data/dropdowndata/castedropdowndata";
-const ApplicantForm = ({ onClose }) => {
+const ApplicantForm = ({ onClose,applicationId }) => {
+  console.log("applicationId",applicationId)
   const [open, setOpen] = useState(true);
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
@@ -25,24 +26,24 @@ const ApplicantForm = ({ onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      divyangname: "",
-      Relationship: "",
-      Address: "",
-      mobileno: "",
-      age: "",
-      Gender: "",
-      Marriagestatus: "",
-      disability_in_percentage: "",
-      Caste: "",
-      Education: "",
-      AdhaarCard: "",
-      Ration_lightbill: "",
-      IFSC_CODE: "",
-      BranchName: "",
-      AccountNo: "",
-      Schemname:"",
-      sportstype:"",
+      name: applicationId.name||"",
+      divyangname: applicationId.divyangname||"",
+      Relationship:applicationId.Relationship||"",
+      Address:applicationId.Address||"",
+      mobileno:applicationId.mobileno||"",
+      age: applicationId.age||"",
+      Gender:applicationId.Gender||"",
+      Marriagestatus:applicationId.Marriagestatus||"",
+      disability_in_percentage:applicationId.disability_in_percentage||"",
+      Caste:applicationId.Caste||"",
+      Education:applicationId.Education||"",
+      AdhaarCard:applicationId.AdhaarCard||"",
+      Ration_lightbill:applicationId.Ration_lightbill||"",
+      IFSC_CODE: applicationId.IFSC_CODE||"",
+      BranchName:applicationId.BranchName||"",
+      AccountNo:applicationId.AccountNo||"",
+      Schemname:applicationId.Schemname||"",
+      sportstype:applicationId.sportstype||"",
       Disabilitycertificate: null,
       Residency: null,
       Canceledcheck: null,
@@ -90,16 +91,16 @@ const ApplicantForm = ({ onClose }) => {
       try {
         const formData = new FormData();
       
-        // Append form values
+       
         Object.keys(values).forEach((key) => {
           if (key.startsWith('image') && values[key]) {
-            formData.append(key, values[key]); // Append the actual file object
+            formData.append(key, values[key]); 
           } else {
             formData.append(key, values[key]);
           }
         });
     
-        // Retrieve the token from localStorage
+      
         const token = localStorage.getItem('token');
         if (!token) {
           alert("User not logged in!");
@@ -326,13 +327,6 @@ const ApplicantForm = ({ onClose }) => {
 
 
 
-
-
-
-
-
-
-
   <Grid item xs={12} sm={6} md={6}>
   <CommonTextField formik={formik} name="Education" label="शिक्षण" sx={{ width: "100%", mb: 2 }} />
   </Grid>
@@ -508,12 +502,14 @@ const ApplicantForm = ({ onClose }) => {
 
           
         </Box>
-
-        <Box sx={{ textAlign: "center", mt: 2 ,display:'flex',alignItems:'center',justifyContent:'center',width:'100%'}}>
+        {!(applicationId) && (
+<Box sx={{ textAlign: "center", mt: 2 ,display:'flex',alignItems:'center',justifyContent:'center',width:'100%'}}>
           <CommonButton type="submit" customWidth="17%">
             Submit
           </CommonButton>
         </Box>
+)}
+        
       </Box>
     </Modal>
   );

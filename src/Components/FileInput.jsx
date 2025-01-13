@@ -16,11 +16,11 @@ const FileInput = ({ formik, name, label }) => {
       margin="normal"
       variant="outlined"
     
+      onBlur={() => formik.setTouched({ ...formik.touched, [name]: true })} 
       InputProps={{
         style: {
-          height:'55px',
-          padding: "8px 12px",
-          marginBottom:"20px"
+          height:'40px',
+          marginBottom:"30px"
         },
         sx: {
           color: '#8DA399',
@@ -34,10 +34,13 @@ const FileInput = ({ formik, name, label }) => {
       
       InputLabelProps={{
         sx: {
-          fontSize: '12px',  // Set the font size of the label
-          fontWeight: 'bold',  // Optional: make label bold
-         
+          fontSize: '15px',  
+          fontWeight: 'bold',  
+          transform: 'translate(0px, -1px)',
+       
         },
+        shrink: true,
+      
       }}
 
     />

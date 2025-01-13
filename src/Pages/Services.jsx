@@ -1,8 +1,9 @@
 import React from 'react';
 import { Grid, Divider, Typography } from '@mui/material';
-import InfoCard from '../Components/InfoCard';  // Assuming InfoCard is imported correctly
-import servicedata from '../data/servicedata';  // Import the data
-
+import InfoCard from '../Components/InfoCard';  
+import servicedata from '../data/servicedata'; 
+import { NavLink } from 'react-router-dom';
+import TermsAndConditions from './TermsAndConditions';
 const Services = () => {
   return (
     <>
@@ -20,7 +21,9 @@ const Services = () => {
               image={service.image}
               title={service.title}
               subtitle={service.description}
+              downloadLink={service.selfdeclarion}
             />
+            <NavLink/> 
           </Grid>
         ))}
       </Grid>

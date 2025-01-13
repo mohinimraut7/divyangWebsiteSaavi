@@ -26,7 +26,7 @@ const Schemes = () => {
         mt: 4,
       }}>
 
-{isAuthenticated && (
+{/* {isAuthenticated && (
       <CommonButton
   variant="contained"
   color="primary"
@@ -38,7 +38,7 @@ const Schemes = () => {
 <AddIcon sx={{ marginLeft: '2px' }} />
 Apply For Scheme
 </CommonButton>
-)}
+)} */}
       </Box>
 
 {/* <SchemesTabs/> */}

@@ -120,6 +120,7 @@ const [selectedRow, setSelectedRow] = React.useState(null);
     AccountNo:application.AccountNo,
     Schemname:application.Schemname,
     sportstype:application.sportstype,
+    Disabilitycertificate:application.Disabilitycertificate,
     comment: application.comments && application.comments.length > 0
       ? application.comments.map(comment => comment.comment).join(', ') 
       : '-',

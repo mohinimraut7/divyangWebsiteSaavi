@@ -88,7 +88,7 @@ const SignIn = () => {
           Sign In
           </CommonButton>
         </Box>
-<NavLink onClick={() =>navigate('/register')}>
+<NavLink to="/register">
         <Typography
           sx={{
             mt: 2,

@@ -124,7 +124,9 @@ const Registration = () => {
             '&:hover': { color: '#1976d2' },
           }}
         >
-         <NavLink onClick={() =>navigate('/signin')}> Have an account? Sign in  </NavLink>
+         <NavLink to="/signin"
+        
+         > Have an account? Sign in  </NavLink>
         </Typography>
       
       </Box>

@@ -16,6 +16,7 @@ line-height: 14px;
 }
 .logowithtext{
 align-items: center;
+display:flex;
 }
 
 @media (max-width: 992px) {

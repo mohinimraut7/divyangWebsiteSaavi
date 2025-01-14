@@ -5,6 +5,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Box, Typography, CircularProgress,Button,IconButton,Modal } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import EditIcon from '@mui/icons-material/Edit';
 import ApplicantForm from "../auth/ApplicantForm";
 const MyApplications = () => {
   const [applications, setApplications] = useState([]);
@@ -81,6 +82,7 @@ const [selectedRow, setSelectedRow] = React.useState(null);
     { field: "comment", headerName: "Comment", width: 150 },
     { field: "approvedBy", headerName: "Approved By", width: 200 },
     { field: "status", headerName: "Status", width: 200 },
+    
     { 
       field: "preview", 
       headerName: "Preview", 
@@ -90,12 +92,37 @@ const [selectedRow, setSelectedRow] = React.useState(null);
           color="primary" 
           onClick={() => {
             setSelectedApplicationId(params.row);
+            setSelectedRow("view");
             handleOpen(); 
           }}
         >
           <VisibilityOutlinedIcon />
         </IconButton>
       )
+    },
+    
+    { 
+      field: "edit", 
+      headerName: "Edit", 
+      width: 120,
+      renderCell: (params) => {
+       
+        if (params.row.status === "Partial") {
+          return (
+            <IconButton 
+              color="primary" 
+              onClick={() => {
+                setSelectedApplicationId(params.row);
+                setSelectedRow("edit"); 
+                handleOpen();
+              }}
+            >
+              <EditIcon />
+            </IconButton>
+          );
+        }
+        return null; 
+      },
     },
   ];
 
@@ -185,7 +212,11 @@ const [selectedRow, setSelectedRow] = React.useState(null);
             Applicant Form
           </Typography>
         
-          {selectedApplicationId && <ApplicantForm applicationId={selectedApplicationId} type="view" onClose={handleClose} />}
+          {/* {selectedApplicationId && <ApplicantForm applicationId={selectedApplicationId} type="view" onClose={handleClose} />} */}
+        
+          {selectedRow === "view" && <ApplicantForm applicationId={selectedApplicationId} type="view" onClose={handleClose} />}
+{selectedRow === "edit" && <ApplicantForm applicationId={selectedApplicationId} type="edit" onClose={handleClose} />}
+
         </Box>
       </Modal>
     </Box>

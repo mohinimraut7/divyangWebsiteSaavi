@@ -27,6 +27,7 @@ import oneyearcertificateimg from '../assets/oneyearcertificateCompress.jpg';
 import hopitlabillproofimg from '../assets/hospitalbillproofCompress.jpg';
 const ApplicantForm = ({ onClose,applicationId,type }) => {
   console.log("applicationId",applicationId)
+  console.log("type",type)
   const [open, setOpen] = useState(true);
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
@@ -482,7 +483,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
         </Grid>
 
         <Box sx={{ paddingBottom: 2 }}>
-
+        {type !== "edit" && (
         <Grid container spacing={2} sx={{mt:2}}>
         <Grid item xs={12} sm={6} md={6} lg={3}>   
         <Box
@@ -662,7 +663,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
               <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Cancel Check</Typography>
       </Grid>
       </Grid>
-
+        )}
       </Box>
 
 

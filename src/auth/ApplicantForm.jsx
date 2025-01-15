@@ -28,6 +28,7 @@ import hopitlabillproofimg from '../assets/hospitalbillproofCompress.jpg';
 const ApplicantForm = ({ onClose,applicationId,type }) => {
   console.log("applicationId",applicationId)
   console.log("type",type)
+  console.log()
   const [open, setOpen] = useState(true);
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
@@ -124,20 +125,38 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           return;
         }
     
-        // Send the form data to the API with the token
-        const response = await axios.post(
-          // "https://divyyang-vvcmc-schemes-1.onrender.com/api/submit",
-          'https://divyang.codifyinstitute.org/api/submit',
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              "Authorization": `Bearer ${token}`,
-            },
-          }
-        );
+        
+
+        const endpoint = type === "edit"
+        ? `https://divyang.codifyinstitute.org/api/form/${applicationId.id}/edit` // Edit endpoint
+        : "https://divyang.codifyinstitute.org/api/submit"; // Submit endpoint
+  
+      const method = type === "edit" ? "put" : "post"; // Use PUT for edit, POST for new submission
+  
+      // Send the request
+      const response = await axios({
+        method,
+        url: endpoint,
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      // Show success message
+      alert(
+        type === "edit"
+          ? "Application Updated Successfully!"
+          : "Application Submitted Successfully!"
+      );
+  
+
+
+        
+
+
     
-        alert("Application Submitted Successfully!");
         handleClose();
       } catch (error) {
         console.error("Error:", error);
@@ -731,7 +750,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
 
           
         </Box>
-        {!(applicationId) && (
+        {!(type==="view") && (
 <Box sx={{ textAlign: "center", mt: 2 ,display:'flex',alignItems:'center',justifyContent:'center',width:'100%'}}>
           <CommonButton type="submit" customWidth="17%">
             Submit

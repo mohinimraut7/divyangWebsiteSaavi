@@ -503,7 +503,27 @@ const ApplicantFormNew = ({ onClose }) => {
           {activeStep < steps.length - 1 ? (
          
          
-           <ArrowForwardIosOutlinedIcon  onClick={handleNext} variant="outlined" sx={{fontSize:'50px',fontWeight:'bold',color:"#007185"}}/>
+          //  <ArrowForwardIosOutlinedIcon  onClick={handleNext} variant="outlined" sx={{fontSize:'50px',fontWeight:'bold',color:"#007185"}}/>
+          <Button
+  onClick={handleNext}
+  variant="outlined"
+  sx={{
+    fontSize: '20px', 
+    fontWeight: 'bold', 
+    color: '#007185', 
+    borderRadius: '20px',  
+    borderColor: '#007185',  
+    padding: '10px 20px',  
+    '&:hover': {
+      borderColor: '#005f58', 
+      backgroundColor: '#e0f4f1' 
+    }
+  }}
+  endIcon={<ArrowForwardIosOutlinedIcon sx={{ fontSize: '24px' }} />}
+>
+  Next
+</Button>
+
           ) : (<>
           {/* <Button>Preview</Button> */}
           <CommonButton type="submit" variant="contained" color="primary">Submit</CommonButton>

@@ -60,7 +60,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
       Schemname:applicationId.Schemname||"",
       sname:"",
       sportstype:applicationId.sportstype||"",
-      Disabilitycertificate:applicationId.Disabilitycertificate||null,
+      Disabilitycertificate:applicationId.Disabilitycertificate||"",
       
       Residency: null,
       Canceledcheck: null,
@@ -163,7 +163,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
   };
   const filteredSchemes = schemedata.filter(scheme => !["योजना क्र. १", "योजना क्र. २", "योजना क्र. ३", "योजना क्र. ४", "योजना क्र. ५","योजना क्र. ६"].includes(scheme.sname));
 
-
+  const isPdf =   `https://divyang.codifyinstitute.org/${applicationId.Disabilitycertificate}`.toLowerCase().endsWith('.pdf');
   return (
     <Modal
       open={open}
@@ -488,6 +488,20 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
         {type !== "edit" && applicationId.Disabilitycertificate !== null &&(
         <Grid container spacing={2} sx={{mt:2}}>
         <Grid item xs={12} sm={6} md={6} lg={3}>   
+
+        {isPdf ? (
+        // Display PDF in an iframe
+        <iframe
+          src={`https://divyang.codifyinstitute.org/${applicationId.Disabilitycertificate}`}
+          style={{
+            width: '100%',
+            height: '500px',
+            border: '1px solid rgba(0, 0, 0, 0.2)',
+            borderRadius: '8px',
+          }}
+          title="PDF Viewer"
+        ></iframe>
+      ) :(
         <Box
         component="img"
         sx={{
@@ -500,6 +514,10 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
         src={`https://divyang.codifyinstitute.org/${applicationId.Disabilitycertificate}`}
          
       />
+      )}
+
+
+      
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Disability Certificate</Typography>
            </Grid>
            <Grid item xs={12} sm={6} md={6} lg={3}>  

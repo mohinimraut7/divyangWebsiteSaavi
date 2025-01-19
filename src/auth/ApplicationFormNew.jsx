@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Modal, Typography, IconButton, TextField, FormControl, InputLabel, Select, MenuItem, Grid, Stepper, Step, StepLabel,Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useFormik } from "formik";
+import { useFormik,Field } from "formik";
 import * as Yup from "yup";
 import CommonButton from "../Components/CommonButton";
 import CommonTextField from "../Components/CommonTextField";
@@ -87,8 +87,8 @@ const ApplicantFormNew = ({ onClose }) => {
         AdhaarCard: Yup.string()
           .matches(/^\d{12}$/, "Aadhaar number must be 12 digits")
           .required("Aadhaar card number is required"),
-      
-   
+          Disabilitycertificate: Yup.mixed().required('Disability certificate is required'),
+        
     }),
     onSubmit: async (values) => {
       try {

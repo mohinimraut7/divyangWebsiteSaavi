@@ -6,7 +6,7 @@ const FileInput = ({ formik, name, label }) => {
     const file = event.target.files[0]; 
     formik.setFieldValue(name, file); 
   };
-
+  const isError = formik.touched[name] && Boolean(formik.errors[name]);
   return (
     <TextField
       type="file"
@@ -16,7 +16,13 @@ const FileInput = ({ formik, name, label }) => {
       margin="normal"
       variant="outlined"
     
-      onBlur={() => formik.setTouched({ ...formik.touched, [name]: true })} 
+      onBlur={() => {
+        if (name === 'Disabilitycertificate') {
+          formik.setFieldTouched(name, true); // Mark the field as touched
+        }
+      }}
+      error={isError} // Apply error styling
+      helperText={isError ? formik.errors[name] : ''} 
       InputProps={{
         style: {
           height:'40px',
@@ -44,6 +50,7 @@ const FileInput = ({ formik, name, label }) => {
       }}
 
     />
+    
   );
 };
 

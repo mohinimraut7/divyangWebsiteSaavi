@@ -28,7 +28,6 @@ import hopitlabillproofimg from '../assets/hospitalbillproofCompress.jpg';
 const ApplicantForm = ({ onClose,applicationId,type }) => {
   console.log("applicationId",applicationId)
   console.log("type",type)
-  console.log()
   const [open, setOpen] = useState(true);
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
@@ -66,8 +65,10 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
       Residency: null,
       Canceledcheck: null,
       Selfdeclartion: null,
-      photo:null,
-      Applicantphoto:null,
+
+      photo:applicationId.photo||"",
+     
+      Applicantphoto:applicationId.Applicantphoto||"",
       quotation:null,
       ubdertaking:null,
       sportcertificate:null,
@@ -125,38 +126,20 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           return;
         }
     
-        
-
-        const endpoint = type === "edit"
-        ? `https://divyang.codifyinstitute.org/api/form/${applicationId.id}/edit` // Edit endpoint
-        : "https://divyang.codifyinstitute.org/api/submit"; // Submit endpoint
-  
-      const method = type === "edit" ? "put" : "post"; // Use PUT for edit, POST for new submission
-  
-      // Send the request
-      const response = await axios({
-        method,
-        url: endpoint,
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      // Show success message
-      alert(
-        type === "edit"
-          ? "Application Updated Successfully!"
-          : "Application Submitted Successfully!"
-      );
-  
-
-
-        
-
-
+        // Send the form data to the API with the token
+        const response = await axios.post(
+          // "https://divyyang-vvcmc-schemes-1.onrender.com/api/submit",
+          'https://divyang.codifyinstitute.org/api/submit',
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "Authorization": `Bearer ${token}`,
+            },
+          }
+        );
     
+        alert("Application Submitted Successfully!");
         handleClose();
       } catch (error) {
         console.error("Error:", error);
@@ -502,7 +485,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
         </Grid>
 
         <Box sx={{ paddingBottom: 2 }}>
-        {type !== "edit" && (
+        {type !== "edit" && applicationId.Disabilitycertificate !== null &&(
         <Grid container spacing={2} sx={{mt:2}}>
         <Grid item xs={12} sm={6} md={6} lg={3}>   
         <Box
@@ -514,7 +497,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
         }}
         alt="Sample Image"
-         src={dcertificate}
+        src={`https://divyang.codifyinstitute.org/${applicationId.Disabilitycertificate}`}
          
       />
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Disability Certificate</Typography>
@@ -530,7 +513,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
         }}
         alt="Sample Image"
-         src={residencyimg}
+        src={`https://divyang.codifyinstitute.org/${applicationId.Residency}`}
           
       />
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Residency Certificate</Typography>
@@ -545,39 +528,44 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         }}
         alt="Sample Image"
-         src={selfdeclartionimg}
+        src={`https://divyang.codifyinstitute.org/${applicationId.Selfdeclartion}`}
           
       />
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Selfdeclaration Certificate</Typography>
        </Grid>
-       <Grid item xs={12} sm={6} md={6} lg={3}>  
-      <Box
-        component="img"
-        sx={{
-          height: 200, 
-          width: 200, 
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-        }}
-        alt="Sample Image"
-         src={photoimg}
-        />
-         <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Photo</Typography>
-         </Grid>
-         <Grid item xs={12} sm={6} md={6} lg={3}>  
-         <Box
-        component="img"
-        sx={{
-          height: 200, 
-          width: 200,  
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-        }}
-        alt="Sample Image"
-         src={applicantphotoimg}
-        />
-         <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Applicant Photo</Typography>
-  </Grid>
+       {type !== "edit" && applicationId.photo !== null &&(
+   <Grid item xs={12} sm={6} md={6} lg={3}>  
+   <Box
+     component="img"
+     sx={{
+       height: 200, 
+       width: 200, 
+       borderRadius: '8px',
+       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+     }}
+     alt="Sample Image"
+     src={`https://divyang.codifyinstitute.org/${applicationId?.photo}`}
+     />
+      <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Photo</Typography>
+      </Grid>
+       )}
+      {type !== "edit" && applicationId.Applicantphoto !== null &&(
+   <Grid item xs={12} sm={6} md={6} lg={3}>  
+   <Box
+  component="img"
+  sx={{
+    height: 200, 
+    width: 200,  
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+  }}
+  alt="Sample Image"
+  src={`https://divyang.codifyinstitute.org/${applicationId?.Applicantphoto}`}
+  />
+   <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Applicant Photo</Typography>
+</Grid>
+      )}
+      
 
   {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांगांना स्वयंरोजगाराकरिता अनुदान देणे बाबत" && (
   <Grid item xs={12} sm={6} md={6} lg={3}>  
@@ -590,7 +578,8 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
         }}
         alt="Sample Image"
-         src={quotationimg}
+        //  src={quotationimg}
+         src={`https://divyang.codifyinstitute.org/${applicationId?.quotation}`}
         />
           <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Quotation</Typography>
          </Grid>
@@ -750,13 +739,15 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
 
           
         </Box>
-        {!(type==="view") && (
-<Box sx={{ textAlign: "center", mt: 2 ,display:'flex',alignItems:'center',justifyContent:'center',width:'100%'}}>
+{type==="edit" && (
+  <Box sx={{ textAlign: "center", mt: 2 ,display:'flex',alignItems:'center',justifyContent:'center',width:'100%'}}>
           <CommonButton type="submit" customWidth="17%">
             Submit
           </CommonButton>
         </Box>
 )}
+
+
         
       </Box>
     </Modal>

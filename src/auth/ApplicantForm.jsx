@@ -168,6 +168,11 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
   const isSelfdeclartionCertificate=`https://divyang.codifyinstitute.org/${applicationId.Selfdeclartion}`.toLowerCase().endsWith('.pdf');
   const isCanceledcheck=`https://divyang.codifyinstitute.org/${applicationId.Canceledcheck}`.toLowerCase().endsWith('.pdf');
   const isPdfPhoto=`https://divyang.codifyinstitute.org/${applicationId.photo}`.toLowerCase().endsWith('.pdf');
+  const isSportCertificate=`https://divyang.codifyinstitute.org/${applicationId.sportcertificate}`.toLowerCase().endsWith('.pdf');
+  const isQuotation=`https://divyang.codifyinstitute.org/${applicationId.quotation}`.toLowerCase().endsWith('.pdf');
+  const isPdfApplicantphoto=`https://divyang.codifyinstitute.org/${applicationId.Applicantphoto}`.toLowerCase().endsWith('.pdf');
+
+
 
   return (
     <Modal
@@ -626,17 +631,32 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
        )}
       {type !== "edit" && applicationId.Applicantphoto !== null &&(
    <Grid item xs={12} sm={6} md={6} lg={3}>  
-   <Box
-  component="img"
-  sx={{
-    height: 200, 
-    width: 200,  
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-  }}
-  alt="Sample Image"
-  src={`https://divyang.codifyinstitute.org/${applicationId?.Applicantphoto}`}
-  />
+    {isPdfApplicantphoto?(
+              (
+                // Display PDF in an iframe
+                <iframe
+                  src={`https://divyang.codifyinstitute.org/${applicationId.Applicantphoto}`}
+                  style={{
+                    width: '100%',
+                    height: '300px',
+                    border: '1px solid rgba(0, 0, 0, 0.2)',
+                    borderRadius: '8px',
+                  }}
+                  title="PDF Viewer"
+                ></iframe>
+              )
+            ):( <Box
+              component="img"
+              sx={{
+                height: 200, 
+                width: 200, 
+                borderRadius: '8px', 
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+              }}
+              alt="Sample Image"
+              src={`https://divyang.codifyinstitute.org/${applicationId.Applicantphoto}`}
+                
+            />)}
    <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Applicant Photo</Typography>
 </Grid>
       )}
@@ -644,18 +664,29 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
 
   {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांगांना स्वयंरोजगाराकरिता अनुदान देणे बाबत" && (
   <Grid item xs={12} sm={6} md={6} lg={3}>  
-<Box
-        component="img"
-        sx={{
-          height: 200, 
-          width: 200,  
-          borderRadius: '8px', 
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-        }}
-        alt="Sample Image"
-        //  src={quotationimg}
-         src={`https://divyang.codifyinstitute.org/${applicationId?.quotation}`}
-        />
+{isQuotation?(
+              // Display PDF in an iframe
+              <iframe
+                src={`https://divyang.codifyinstitute.org/${applicationId.quotation}`}
+                style={{
+                  width: '100%',
+                  height: '300px',
+                  border: '1px solid rgba(0, 0, 0, 0.2)',
+                  borderRadius: '8px',
+                }}
+                title="PDF Viewer"
+              ></iframe>
+            ):( <Box
+      component="img"
+      sx={{
+        height: 200, 
+        width: 200,  
+        borderRadius: '8px', 
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+      }}
+      alt="Sample Image"
+      src={`https://divyang.codifyinstitute.org/${applicationId.quotation}`}
+            />)}
           <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Quotation</Typography>
          </Grid>
   )}
@@ -678,20 +709,42 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
  </Grid>)}
 
  {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील (दिव्यांग) खेळाडूंना प्रोत्साहानात्मक अनुदान देणे" && (
- <Grid item xs={12} sm={6} md={6} lg={3}>  
-<Box
-        component="img"
-        sx={{
-          height: 200, 
-          width: 200, 
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-        }}
-        alt="Sample Image"
-         src={sportcertificateimg}
-        />
-         <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Sport Certificate</Typography>
-</Grid>)}
+
+  
+<Grid item xs={12} sm={6} md={6} lg={3}>  
+{isSportCertificate?(
+              // Display PDF in an iframe
+              <iframe
+                src={`https://divyang.codifyinstitute.org/${applicationId.sportcertificate}`}
+                style={{
+                  width: '100%',
+                  height: '300px',
+                  border: '1px solid rgba(0, 0, 0, 0.2)',
+                  borderRadius: '8px',
+                }}
+                title="PDF Viewer"
+              ></iframe>
+            ):( <Box
+      component="img"
+      sx={{
+        height: 200, 
+        width: 200,  
+        borderRadius: '8px', 
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+      }}
+      alt="Sample Image"
+      src={`https://divyang.codifyinstitute.org/${applicationId.sportcertificate}`}
+            />)}
+     
+            <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Sport Certificate</Typography>
+    </Grid>
+
+
+
+
+
+
+)}
 {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांग व्यक्तींना व्याधीग्रस्त आजार, शस्त्रक्रिया त्या अनुषंगींक आजारानुसार खर्चाच्या २५% अर्थसहाय्य उपलब्ध करुन देणे बाबत." && (
 
 
@@ -758,6 +811,11 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
        
               <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Cancel Check</Typography>
       </Grid>
+
+
+
+
+
       </Grid>
         )}
       </Box>

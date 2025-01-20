@@ -16,6 +16,7 @@ const CommonTextField = ({
   return (
     <TextField
       fullWidth
+      size="small"
       id={id}
       name={name}
       label={label}
@@ -32,9 +33,9 @@ const CommonTextField = ({
               {icon}
             </InputAdornment>
           ) : null, 
-        sx: {
-          height: '40px',
-        },
+        // sx: {
+        //   height: '40px',
+        // },
         
       }}
       InputLabelProps={{

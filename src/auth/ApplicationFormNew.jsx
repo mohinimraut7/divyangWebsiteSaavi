@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Box, Modal, Typography, IconButton, TextField, FormControl, InputLabel, Select, MenuItem, Grid, Stepper, Step, StepLabel,Button } from "@mui/material";
 // import CloseIcon from "@mui/icons-material/Close";
+import FormHelperText from '@mui/material/FormHelperText';
+
 import { useFormik,Field } from "formik";
 import * as Yup from "yup";
 import CommonButton from "../Components/CommonButton";
@@ -84,6 +86,8 @@ const ApplicantFormNew = ({ onClose }) => {
       IFSC_CODE: Yup.string().required("IFSC code is required"),
       BranchName: Yup.string().required("Branch name is required"),
       AccountNo: Yup.string().required("Account number is required"),
+      Schemname: Yup.string().required('Scheme Name is required'),
+
         AdhaarCard: Yup.string()
           .matches(/^\d{12}$/, "Aadhaar number must be 12 digits")
           .required("Aadhaar card number is required"),
@@ -125,33 +129,73 @@ const ApplicantFormNew = ({ onClose }) => {
             "Applicant Photo size must be less than 100 KB",
             (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
           ),
-          
-          // quotation:Yup.mixed()
-          // .notRequired()
-          // .test(
-          //   "fileSize", 
-          //   "Size must be less than 100 KB",
-          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
-          // ),
-          // ubdertaking:Yup.mixed()
-          // .test(
-          //   "fileSize", 
-          //   "Size must be less than 100 KB",
-          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
-          // ),
-          // sportcertificate:Yup.mixed()
-          // .test(
-          //   "fileSize", 
-          //   "Size must be less than 100 KB",
-          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
-          // ),
-          
-          // oneyear:Yup.mixed()
-          // .test(
-          //   "fileSize", 
-          //   "Size must be less than 100 KB",
-          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
-          // ),
+          quotation: Yup.mixed()
+  .when('Schemname', {
+    is: 'वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांगांना स्वयंरोजगाराकरिता अनुदान देणे बाबत',
+    then: () => Yup.mixed()
+      .required('Quotation is required')
+      .test(
+        'fileSize',
+        'Size must be less than 100 KB',
+        (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+      ),
+    otherwise: () => Yup.mixed().notRequired(),
+  }),
+        
+  
+          ubdertaking: Yup.mixed()
+          .when('Schemname', {
+            is: 'वसई-विरार शहर महानगरपालिका हद्दीतील (दिव्यांग) खेळाडूंना प्रोत्साहानात्मक अनुदान देणे',
+            then: () => Yup.mixed()
+              .required('Hamipatra is required')
+              .test(
+                'fileSize',
+                'Size must be less than 100 KB',
+                (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+              ),
+            otherwise: () => Yup.mixed().notRequired(),
+          }),
+
+
+          sportcertificate: Yup.mixed()
+          .when('Schemname', {
+            is: 'वसई-विरार शहर महानगरपालिका हद्दीतील (दिव्यांग) खेळाडूंना प्रोत्साहानात्मक अनुदान देणे',
+            then: () => Yup.mixed()
+              .required('Sport Certificate is required')
+              .test(
+                'fileSize',
+                'Size must be less than 100 KB',
+                (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+              ),
+            otherwise: () => Yup.mixed().notRequired(),
+          }),
+
+          oneyear: Yup.mixed()
+          .when('Schemname', {
+            is: 'वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांग व्यक्तींना व्याधीग्रस्त आजार, शस्त्रक्रिया त्या अनुषंगींक आजारानुसार खर्चाच्या २५% अर्थसहाय्य उपलब्ध करुन देणे बाबत.',
+            then: () => Yup.mixed()
+              .required('Application within one year is required')
+              .test(
+                'fileSize',
+                'Size must be less than 100 KB',
+                (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+              ),
+            otherwise: () => Yup.mixed().notRequired(),
+          }),
+
+          hopitlabillproof: Yup.mixed()
+          .when('Schemname', {
+            is: 'वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांग व्यक्तींना व्याधीग्रस्त आजार, शस्त्रक्रिया त्या अनुषंगींक आजारानुसार खर्चाच्या २५% अर्थसहाय्य उपलब्ध करुन देणे बाबत.',
+            then: () => Yup.mixed()
+              .required('Hospital Proof is required')
+              .test(
+                'fileSize',
+                'Size must be less than 100 KB',
+                (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+              ),
+            otherwise: () => Yup.mixed().notRequired(),
+          }),
+
 
           // hopitlabillproof:Yup.mixed()
           // .test(
@@ -459,7 +503,12 @@ const ApplicantFormNew = ({ onClose }) => {
                    <Grid item xs={12} sm={12} md={12} lg={4}>
  
   <Box>
-      <FormControl fullWidth margin="normal" variant="outlined" className='A-B-Input'>
+      <FormControl fullWidth margin="normal" variant="outlined"
+      size="small"
+         error={formik.touched.Schemname && Boolean(formik.errors.Schemname)}
+
+
+      className='A-B-Input'>
     <InputLabel id="ward-label" sx={{ fontSize: '15px', fontWeight: 'bold' }}>योजनेचे नाव</InputLabel>
     <Select
         id="Schemname"
@@ -467,6 +516,7 @@ const ApplicantFormNew = ({ onClose }) => {
         labelId="Schemname"
         value={formik.values.Schemname}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         label="Schemname"
         MenuProps={{
             PaperProps: {
@@ -479,7 +529,7 @@ const ApplicantFormNew = ({ onClose }) => {
         }}
         sx={{
           fontSize: '15px', 
-          height: '40px',
+          // height: '40px',
         }}
     >
         {schemedata.map((scheme, index) => (
@@ -488,6 +538,9 @@ const ApplicantFormNew = ({ onClose }) => {
             </MenuItem>
         ))}
     </Select>
+    {formik.touched.Schemname && formik.errors.Schemname && (
+      <FormHelperText>{formik.errors.Schemname}</FormHelperText>
+    )}
 </FormControl>
 
 

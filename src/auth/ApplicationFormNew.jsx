@@ -87,16 +87,80 @@ const ApplicantFormNew = ({ onClose }) => {
         AdhaarCard: Yup.string()
           .matches(/^\d{12}$/, "Aadhaar number must be 12 digits")
           .required("Aadhaar card number is required"),
-          Disabilitycertificate: Yup.mixed().required('Disability certificate is required'),
-          Residency: Yup.mixed().required('Residency certificate is required'),
-          Canceledcheck: Yup.mixed().required('Canceledcheck is required'),
-          Selfdeclartion: Yup.mixed().required('Selfdeclartion is required'),
-          photo: Yup.mixed().required('Photo is required'),
-          Applicantphoto:Yup.mixed().required('Applicant Photo is required'),
-          // sportcertificate:Yup.mixed().required('Sportcertificate is required'),
-          // ubdertaking:Yup.mixed().required('Business undertaking on stamp paper of Rs.100 is required'),
-        //  Schemname: Yup.string().required("Scheme name is required"),
- 
+          Disabilitycertificate: Yup.mixed().required('Disability certificate is required')
+          .test(
+            "fileSize",
+            "Disability certificate size must be less than 100 KB",
+            (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          )
+          ,
+          Residency: Yup.mixed().required('Residency certificate is required')
+          .test(
+            "fileSize",
+            "Residency certificate size must be less than 100 KB",
+            (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          )
+          ,
+          Canceledcheck: Yup.mixed().required('Canceledcheck is required')
+          .test(
+            "fileSize",
+            "Canceled Check size must be less than 100 KB",
+            (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          ),
+          Selfdeclartion: Yup.mixed().required('Selfdeclartion is required')
+          .test(
+            "fileSize",
+            "Self Declaration size must be less than 100 KB",
+            (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          ),
+          photo: Yup.mixed().required('Photo is required')
+          .test(
+            "fileSize",
+            "Photo size must be less than 100 KB",
+            (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          ),
+          Applicantphoto:Yup.mixed().required('Applicant Photo is required')
+          .test(
+            "fileSize", 
+            "Applicant Photo size must be less than 100 KB",
+            (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          ),
+          
+          // quotation:Yup.mixed()
+          // .notRequired()
+          // .test(
+          //   "fileSize", 
+          //   "Size must be less than 100 KB",
+          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          // ),
+          // ubdertaking:Yup.mixed()
+          // .test(
+          //   "fileSize", 
+          //   "Size must be less than 100 KB",
+          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          // ),
+          // sportcertificate:Yup.mixed()
+          // .test(
+          //   "fileSize", 
+          //   "Size must be less than 100 KB",
+          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          // ),
+          
+          // oneyear:Yup.mixed()
+          // .test(
+          //   "fileSize", 
+          //   "Size must be less than 100 KB",
+          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          // ),
+
+          // hopitlabillproof:Yup.mixed()
+          // .test(
+          //   "fileSize", 
+          //   "Size must be less than 100 KB",
+          //   (value) => !value || (value && value.size <= 100 * 1024) // 100 KB in bytes
+          // ),
+
+        
   
 
     }),

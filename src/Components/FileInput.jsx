@@ -17,7 +17,7 @@ const FileInput = ({ formik, name, label }) => {
       variant="outlined"
     
       onBlur={() => {
-        if (name === 'Disabilitycertificate'|| name === 'Residency' || name==='Canceledcheck' || name==='Selfdeclartion' || name==='photo' ||name==='Applicantphoto'||name==='ubdertaking' ||name==='sportcertificate') {
+        if (name === 'Disabilitycertificate'|| name === 'Residency' || name==='Canceledcheck' || name==='Selfdeclartion' || name==='photo' ||name==='Applicantphoto') {
           formik.setFieldTouched(name, true); 
         }
       }} 

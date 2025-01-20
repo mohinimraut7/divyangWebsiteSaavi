@@ -80,13 +80,15 @@ const ApplicantFormNew = ({ onClose }) => {
         .min(0, "Must be at least 0%")
         .max(100, "Cannot exceed 100%")
         .required("Disability percentage is required"),
-      Caste: Yup.string().required("Caste is required"),
+    
       Education: Yup.string().required("Education is required"),
       Ration_lightbill: Yup.string().required("Ration/Light Bill number is required"),
       IFSC_CODE: Yup.string().required("IFSC code is required"),
       BranchName: Yup.string().required("Branch name is required"),
       AccountNo: Yup.string().required("Account number is required"),
       Schemname: Yup.string().required('Scheme Name is required'),
+   
+      Caste: Yup.string().required('Caste is required'),
 
         AdhaarCard: Yup.string()
           .matches(/^\d{12}$/, "Aadhaar number must be 12 digits")
@@ -155,7 +157,12 @@ const ApplicantFormNew = ({ onClose }) => {
               ),
             otherwise: () => Yup.mixed().notRequired(),
           }),
-
+          
+          sportstype: Yup.mixed().when('Schemname', {
+            is: 'वसई-विरार शहर महानगरपालिका हद्दीतील (दिव्यांग) खेळाडूंना प्रोत्साहानात्मक अनुदान देणे',
+            then: () => Yup.mixed().required('Sport Type is required'),
+            otherwise: () => Yup.mixed().notRequired(),
+          }),
 
           sportcertificate: Yup.mixed()
           .when('Schemname', {
@@ -322,13 +329,17 @@ const ApplicantFormNew = ({ onClose }) => {
 
 <Grid item xs={12} sm={12} md={12} lg={2.9}>
                  <Box>
-               <FormControl fullWidth margin="normal" variant="outlined" className='A-B-Input'>
+               <FormControl fullWidth margin="normal" variant="outlined" 
+               size="small"
+               error={formik.touched.disability_in_percentage && Boolean(formik.errors.disability_in_percentage)}
+               className='A-B-Input'>
                    <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold' }}>अपंगत्वाची टक्केवारी</InputLabel>
                    <Select
                        id="disability_in_percentage"
                        name="disability_in_percentage"
                        labelId="disability_in_percentage"
                        value={formik.values.disability_in_percentage}
+                       onBlur={formik.handleBlur}
                        onChange={formik.handleChange}
                        label="अपंगत्वाची टक्केवारी"
                        MenuProps={{
@@ -350,6 +361,9 @@ const ApplicantFormNew = ({ onClose }) => {
                            </MenuItem>
                        ))}
                    </Select>
+                   {formik.touched.disability_in_percentage && formik.errors.disability_in_percentage && (
+      <FormHelperText>{formik.errors.disability_in_percentage}</FormHelperText>
+    )}
                </FormControl>
                </Box>
                  </Grid>
@@ -361,7 +375,10 @@ const ApplicantFormNew = ({ onClose }) => {
                 
                <Grid item xs={12} sm={12} md={12} lg={2.9}>
                  <Box>
-               <FormControl fullWidth margin="normal" variant="outlined" className='A-B-Input'>
+               <FormControl fullWidth margin="normal" variant="outlined" 
+                size="small"
+                error={formik.touched.Gender && Boolean(formik.errors.Gender)}
+               className='A-B-Input'>
                    <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold' }}>दिव्यांग लाभार्थी</InputLabel>
                    <Select
                        id="Gender"
@@ -369,6 +386,7 @@ const ApplicantFormNew = ({ onClose }) => {
                        labelId="Gender"
                        value={formik.values.Gender}
                        onChange={formik.handleChange}
+                       onBlur={formik.handleBlur}
                        label="लिंग"
                        MenuProps={{
                            PaperProps: {
@@ -380,7 +398,7 @@ const ApplicantFormNew = ({ onClose }) => {
                        }}
                        sx={{
                          fontSize: '15px', 
-                          height:'40px'
+                          // height:'40px'
                        }}
                    >
                        {genderdata.map((gender, index) => (
@@ -389,6 +407,9 @@ const ApplicantFormNew = ({ onClose }) => {
                            </MenuItem>
                        ))}
                    </Select>
+                   {formik.touched.Gender && formik.errors.Gender && (
+      <FormHelperText>{formik.errors.Gender}</FormHelperText>
+    )}
                </FormControl>
                </Box>
                  </Grid>
@@ -396,7 +417,11 @@ const ApplicantFormNew = ({ onClose }) => {
 
                 <Grid item xs={12} sm={12} md={12} lg={3.1}>
                   <Box>
-                <FormControl fullWidth margin="normal" variant="outlined" className='A-B-Input'>
+                <FormControl fullWidth margin="normal" variant="outlined" 
+                 size="small"
+                 error={formik.touched.Marriagestatus && Boolean(formik.errors.Marriagestatus)}
+        
+                className='A-B-Input'>
                     <InputLabel id="ward-label" sx={{ fontSize: '15px', fontWeight: 'bold' }}>वैवाहिक स्थिती</InputLabel>
                     <Select
                         id="Marriagestatus"
@@ -404,6 +429,7 @@ const ApplicantFormNew = ({ onClose }) => {
                         labelId="Marriagestatus"
                         value={formik.values.Marriagestatus}
                         onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         label="वैवाहिक स्थिती"
                         MenuProps={{
                             PaperProps: {
@@ -415,7 +441,7 @@ const ApplicantFormNew = ({ onClose }) => {
                         }}
                         sx={{
                           fontSize: '15px', 
-                           height:'40px'
+                          //  height:'40px'
                         }}
                     >
                         {marriedstatusdata.map((mstatus, index) => (
@@ -424,6 +450,9 @@ const ApplicantFormNew = ({ onClose }) => {
                             </MenuItem>
                         ))}
                     </Select>
+                    {formik.touched.Marriagestatus && formik.errors.Marriagestatus && (
+      <FormHelperText>{formik.errors.Marriagestatus}</FormHelperText>
+    )}
                 </FormControl>
                 </Box>
                   </Grid>
@@ -433,7 +462,10 @@ const ApplicantFormNew = ({ onClose }) => {
 
                    <Grid item xs={12} sm={12} md={12} lg={3.1}>
                     <Box>
-                  <FormControl fullWidth margin="normal" variant="outlined" className='A-B-Input'>
+                  <FormControl fullWidth margin="normal" variant="outlined" 
+                  error={formik.touched.Caste && Boolean(formik.errors.Caste)}
+                   size="small"
+                  className='A-B-Input'>
                       <InputLabel id="ward-label" sx={{ fontSize: '15px', fontWeight: 'bold' }}>जात</InputLabel>
                       <Select
                           id="Caste"
@@ -441,6 +473,7 @@ const ApplicantFormNew = ({ onClose }) => {
                           labelId="Caste"
                           value={formik.values.Caste}
                           onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
                           label="जात "
                           MenuProps={{
                               PaperProps: {
@@ -452,7 +485,7 @@ const ApplicantFormNew = ({ onClose }) => {
                           }}
                           sx={{
                             fontSize: '15px', 
-                             height:'40px'
+                            //  height:'40px'
                           }}
                       >
                           {castedata.map((castenames, index) => (
@@ -461,6 +494,9 @@ const ApplicantFormNew = ({ onClose }) => {
                               </MenuItem>
                           ))}
                       </Select>
+                      {formik.touched.Caste && formik.errors.Caste && (
+      <FormHelperText>{formik.errors.Caste}</FormHelperText>
+    )}
                   </FormControl>
                   </Box>
                   

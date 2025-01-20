@@ -167,7 +167,8 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
   const isPdfResidencyCertificate = `https://divyang.codifyinstitute.org/${applicationId.Residency}`.toLowerCase().endsWith('.pdf');
   const isSelfdeclartionCertificate=`https://divyang.codifyinstitute.org/${applicationId.Selfdeclartion}`.toLowerCase().endsWith('.pdf');
   const isCanceledcheck=`https://divyang.codifyinstitute.org/${applicationId.Canceledcheck}`.toLowerCase().endsWith('.pdf');
-  
+  const isPdfPhoto=`https://divyang.codifyinstitute.org/${applicationId.photo}`.toLowerCase().endsWith('.pdf');
+
   return (
     <Modal
       open={open}
@@ -499,7 +500,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           src={`https://divyang.codifyinstitute.org/${applicationId.Disabilitycertificate}`}
           style={{
             width: '100%',
-            height: '500px',
+            height: '300px',
             border: '1px solid rgba(0, 0, 0, 0.2)',
             borderRadius: '8px',
           }}
@@ -534,7 +535,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
                   src={`https://divyang.codifyinstitute.org/${applicationId.Residency}`}
                   style={{
                     width: '100%',
-                    height: '500px',
+                    height: '300px',
                     border: '1px solid rgba(0, 0, 0, 0.2)',
                     borderRadius: '8px',
                   }}
@@ -568,7 +569,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
                   src={`https://divyang.codifyinstitute.org/${applicationId.Selfdeclartion}`}
                   style={{
                     width: '100%',
-                    height: '500px',
+                    height: '300px',
                     border: '1px solid rgba(0, 0, 0, 0.2)',
                     borderRadius: '8px',
                   }}
@@ -590,18 +591,36 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Selfdeclaration Certificate</Typography>
        </Grid>
        {type !== "edit" && applicationId.photo !== null &&(
-   <Grid item xs={12} sm={6} md={6} lg={3}>  
-   <Box
-     component="img"
-     sx={{
-       height: 200, 
-       width: 200, 
-       borderRadius: '8px',
-       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-     }}
-     alt="Sample Image"
-     src={`https://divyang.codifyinstitute.org/${applicationId?.photo}`}
-     />
+   <Grid item xs={12} sm={6} md={6} lg={3}>
+    
+    {isPdfPhoto?(
+ (
+  // Display PDF in an iframe
+  <iframe
+    src={`https://divyang.codifyinstitute.org/${applicationId.photo}`}
+    style={{
+      width: '100%',
+      height: '300px',
+      border: '1px solid rgba(0, 0, 0, 0.2)',
+      borderRadius: '8px',
+    }}
+    title="PDF Viewer"
+  ></iframe>
+)
+    ):(
+      <Box
+      component="img"
+      sx={{
+        height: 200, 
+        width: 200, 
+        borderRadius: '8px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+      }}
+      alt="Sample Image"
+      src={`https://divyang.codifyinstitute.org/${applicationId?.photo}`}
+      />
+    )}
+ 
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Photo</Typography>
       </Grid>
        )}
@@ -719,7 +738,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
                   src={`https://divyang.codifyinstitute.org/${applicationId.Canceledcheck}`}
                   style={{
                     width: '100%',
-                    height: '500px',
+                    height: '300px',
                     border: '1px solid rgba(0, 0, 0, 0.2)',
                     borderRadius: '8px',
                   }}

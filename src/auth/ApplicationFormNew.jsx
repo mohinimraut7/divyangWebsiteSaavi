@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Modal, Typography, IconButton, TextField, FormControl, InputLabel, Select, MenuItem, Grid, Stepper, Step, StepLabel,Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+// import CloseIcon from "@mui/icons-material/Close";
 import { useFormik,Field } from "formik";
 import * as Yup from "yup";
 import CommonButton from "../Components/CommonButton";
@@ -155,9 +155,9 @@ const ApplicantFormNew = ({ onClose }) => {
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',mt:5,}}>
       <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: "96%" }}>
-        <IconButton onClick={handleClose} sx={{ position: "absolute", top: 10, right: 10, color: "gray" }}>
+        {/* <IconButton onClick={handleClose} sx={{ position: "absolute", top: 10, right: 10, color: "gray" }}>
           <CloseIcon />
-        </IconButton>
+        </IconButton> */}
 
         <Typography variant="h6" align="center" mb={2} sx={{fontWeight:'bold',color:'#007185'}}>दिव्यांग योजनेसाठी अर्ज</Typography>
 

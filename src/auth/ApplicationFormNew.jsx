@@ -237,7 +237,7 @@ const ApplicantFormNew = ({ onClose }) => {
                        }}
                    >
                        {disabilitypercentage.map((per,index) => (
-                           <MenuItem key={index} value={per.percentage} sx={{fontSize:'15px',fontWeight:'bold',width:"100px"}}>
+                           <MenuItem key={index} value={per.percentage} sx={{fontSize:'15px',fontWeight:'bold',width:"100%"}}>
                                {per.percentage}
                            </MenuItem>
                        ))}
@@ -276,7 +276,7 @@ const ApplicantFormNew = ({ onClose }) => {
                        }}
                    >
                        {genderdata.map((gender, index) => (
-                           <MenuItem key={index} value={gender.gname} sx={{fontSize:'15px',fontWeight:'bold',width:"100px"}}>
+                           <MenuItem key={index} value={gender.gname} sx={{fontSize:'15px',fontWeight:'bold',width:"100%"}}>
                                {gender.gname}
                            </MenuItem>
                        ))}
@@ -311,7 +311,7 @@ const ApplicantFormNew = ({ onClose }) => {
                         }}
                     >
                         {marriedstatusdata.map((mstatus, index) => (
-                            <MenuItem key={index} value={mstatus.name} sx={{fontSize:'15px',fontWeight:'bold',width:"100px"}}>
+                            <MenuItem key={index} value={mstatus.name} sx={{fontSize:'15px',fontWeight:'bold',width:"100%"}}>
                                 {mstatus.name}
                             </MenuItem>
                         ))}
@@ -348,7 +348,7 @@ const ApplicantFormNew = ({ onClose }) => {
                           }}
                       >
                           {castedata.map((castenames, index) => (
-                              <MenuItem key={index} value={castenames.name} sx={{fontSize:'15px',fontWeight:'bold',width:"300px"}}>
+                              <MenuItem key={index} value={castenames.name} sx={{fontSize:'15px',fontWeight:'bold',width:"100%"}}>
                                   {castenames.name}
                               </MenuItem>
                           ))}

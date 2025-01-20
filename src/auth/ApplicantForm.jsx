@@ -57,7 +57,7 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
       IFSC_CODE: applicationId.IFSC_CODE||"",
       BranchName:applicationId.BranchName||"",
       AccountNo:applicationId.AccountNo||"",
-      Schemname:applicationId.Schemname||"",
+      Schemname:applicationId?.Schemname||"",
       sname:"",
       sportstype:applicationId.sportstype||"",
       Disabilitycertificate:applicationId.Disabilitycertificate||"",

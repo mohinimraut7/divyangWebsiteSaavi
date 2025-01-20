@@ -163,7 +163,7 @@ const [selectedRow, setSelectedRow] = React.useState(null);
       ? application.comments.map(comment => comment.comment).join(', ') 
       : '-',
     approvedBy: application.comments && application.comments.length > 0
-      ? application.comments.map(comment => comment.role ? `Given by ${comment.role}` : '-').join(', ') 
+      ? application.comments.map(comment => comment.role ? ` ${comment.role}` : '-').join(', ') 
       : '-',
     status: application.status,
   }));

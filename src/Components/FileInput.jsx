@@ -17,10 +17,10 @@ const FileInput = ({ formik, name, label }) => {
       variant="outlined"
     
       onBlur={() => {
-        if (name === 'Disabilitycertificate') {
-          formik.setFieldTouched(name, true); // Mark the field as touched
+        if (name === 'Disabilitycertificate'|| name === 'Residency' || name==='Canceledcheck' || name==='Selfdeclartion' || name==='photo' ||name==='Applicantphoto'||name==='ubdertaking' ||name==='sportcertificate') {
+          formik.setFieldTouched(name, true); 
         }
-      }}
+      }} 
       error={isError} // Apply error styling
       helperText={isError ? formik.errors[name] : ''} 
       InputProps={{

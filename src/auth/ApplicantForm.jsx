@@ -163,7 +163,11 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
   };
   const filteredSchemes = schemedata.filter(scheme => !["योजना क्र. १", "योजना क्र. २", "योजना क्र. ३", "योजना क्र. ४", "योजना क्र. ५","योजना क्र. ६"].includes(scheme.sname));
 
-  const isPdf =   `https://divyang.codifyinstitute.org/${applicationId.Disabilitycertificate}`.toLowerCase().endsWith('.pdf');
+  const isPdf = `https://divyang.codifyinstitute.org/${applicationId.Disabilitycertificate}`.toLowerCase().endsWith('.pdf');
+  const isPdfResidencyCertificate = `https://divyang.codifyinstitute.org/${applicationId.Residency}`.toLowerCase().endsWith('.pdf');
+  const isSelfdeclartionCertificate=`https://divyang.codifyinstitute.org/${applicationId.Selfdeclartion}`.toLowerCase().endsWith('.pdf');
+  const isCanceledcheck=`https://divyang.codifyinstitute.org/${applicationId.Canceledcheck}`.toLowerCase().endsWith('.pdf');
+  
   return (
     <Modal
       open={open}
@@ -515,29 +519,62 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
          
       />
       )}
-
-
       
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Disability Certificate</Typography>
            </Grid>
+
+
+
+
            <Grid item xs={12} sm={6} md={6} lg={3}>  
+            {isPdfResidencyCertificate?(
+              (
+                // Display PDF in an iframe
+                <iframe
+                  src={`https://divyang.codifyinstitute.org/${applicationId.Residency}`}
+                  style={{
+                    width: '100%',
+                    height: '500px',
+                    border: '1px solid rgba(0, 0, 0, 0.2)',
+                    borderRadius: '8px',
+                  }}
+                  title="PDF Viewer"
+                ></iframe>
+              )
+            ):( <Box
+              component="img"
+              sx={{
+                height: 200, 
+                width: 200, 
+                borderRadius: '8px', 
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+              }}
+              alt="Sample Image"
+              src={`https://divyang.codifyinstitute.org/${applicationId.Residency}`}
+                
+            />)}
        
-       <Box
-        component="img"
-        sx={{
-          height: 200, 
-          width: 200, 
-          borderRadius: '8px', 
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
-        }}
-        alt="Sample Image"
-        src={`https://divyang.codifyinstitute.org/${applicationId.Residency}`}
-          
-      />
+      
+      
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Residency Certificate</Typography>
        </Grid>
+
+
+
        <Grid item xs={12} sm={6} md={6} lg={3}>  
-       <Box
+        {isSelfdeclartionCertificate?((
+                // Display PDF in an iframe
+                <iframe
+                  src={`https://divyang.codifyinstitute.org/${applicationId.Selfdeclartion}`}
+                  style={{
+                    width: '100%',
+                    height: '500px',
+                    border: '1px solid rgba(0, 0, 0, 0.2)',
+                    borderRadius: '8px',
+                  }}
+                  title="PDF Viewer"
+                ></iframe>
+              )):(<Box
         component="img"
         sx={{
           height: 200,
@@ -548,7 +585,8 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
         alt="Sample Image"
         src={`https://divyang.codifyinstitute.org/${applicationId.Selfdeclartion}`}
           
-      />
+      />)}
+       
       <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Selfdeclaration Certificate</Typography>
        </Grid>
        {type !== "edit" && applicationId.photo !== null &&(
@@ -675,7 +713,19 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
 
 
 <Grid item xs={12} sm={6} md={6} lg={3}>  
-        <Box
+  {isCanceledcheck?(
+                // Display PDF in an iframe
+                <iframe
+                  src={`https://divyang.codifyinstitute.org/${applicationId.Canceledcheck}`}
+                  style={{
+                    width: '100%',
+                    height: '500px',
+                    border: '1px solid rgba(0, 0, 0, 0.2)',
+                    borderRadius: '8px',
+                  }}
+                  title="PDF Viewer"
+                ></iframe>
+              ):( <Box
         component="img"
         sx={{
           height: 200, 
@@ -684,8 +734,9 @@ const ApplicantForm = ({ onClose,applicationId,type }) => {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
         }}
         alt="Sample Image"
-        src={ccheck}
-              />
+        src={`https://divyang.codifyinstitute.org/${applicationId.Canceledcheck}`}
+              />)}
+       
               <Typography sx={{fontSize:'12px',mt:1,fontWeight:'bold'}}>Cancel Check</Typography>
       </Grid>
       </Grid>

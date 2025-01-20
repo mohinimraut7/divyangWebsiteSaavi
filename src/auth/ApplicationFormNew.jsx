@@ -88,7 +88,17 @@ const ApplicantFormNew = ({ onClose }) => {
           .matches(/^\d{12}$/, "Aadhaar number must be 12 digits")
           .required("Aadhaar card number is required"),
           Disabilitycertificate: Yup.mixed().required('Disability certificate is required'),
-        
+          Residency: Yup.mixed().required('Residency certificate is required'),
+          Canceledcheck: Yup.mixed().required('Canceledcheck is required'),
+          Selfdeclartion: Yup.mixed().required('Selfdeclartion is required'),
+          photo: Yup.mixed().required('Photo is required'),
+          Applicantphoto:Yup.mixed().required('Applicant Photo is required'),
+          // sportcertificate:Yup.mixed().required('Sportcertificate is required'),
+          // ubdertaking:Yup.mixed().required('Business undertaking on stamp paper of Rs.100 is required'),
+        //  Schemname: Yup.string().required("Scheme name is required"),
+ 
+  
+
     }),
     onSubmit: async (values) => {
       try {

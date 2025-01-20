@@ -12,7 +12,7 @@ const Schemes = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token); // Set authentication status based on token presence
+    setIsAuthenticated(!!token); 
   }, []);
 
   const handleOpen = () => setOpen(true);
@@ -22,23 +22,11 @@ const Schemes = () => {
     <>
       <Box sx={{
         display: 'flex',
-        justifyContent: 'flex-end', // Aligns button to the right
+        justifyContent: 'flex-end', 
         mt: 4,
       }}>
 
-{/* {isAuthenticated && (
-      <CommonButton
-  variant="contained"
-  color="primary"
-  bgColor="#4caf50" // Custom background color (green)
-      hoverColor="#388e3c" // Custom hover color (darker green)
-  onClick={handleOpen}
-  sx={{ fontSize: "16px", fontWeight: "bold" }}
->
-<AddIcon sx={{ marginLeft: '2px' }} />
-Apply For Scheme
-</CommonButton>
-)} */}
+
       </Box>
 
 {/* <SchemesTabs/> */}

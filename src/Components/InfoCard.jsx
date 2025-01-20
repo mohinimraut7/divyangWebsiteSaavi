@@ -13,7 +13,7 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
   };
   const location = useLocation();
   const cardHeight = 
-  location.pathname === "/schemes" ? 280 : 
+  location.pathname === "/schemes" ? 305 : 
   location.pathname === "/about" ? 300 : 
   location.pathname === "/" ? 300 : 
   280;
@@ -82,7 +82,7 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
             sx={{ color: "#2980b9", cursor: "pointer" }}
             onClick={handleDownload} 
           >
-            Download Hamipatra
+            डाउनलोड हमीपत्र 
           </Typography>
         </Box>
       </Card>

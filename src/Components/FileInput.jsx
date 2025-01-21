@@ -4,18 +4,26 @@ import { TextField } from '@mui/material';
 const FileInput = ({ formik, name, label }) => {
   const handleFileChange = (event) => {
     const file = event.target.files[0]; 
-    formik.setFieldValue(name, file); 
+    if(file){
+      formik.setFieldValue(name, file); 
+
+    }
   };
   const isError = formik.touched[name] && Boolean(formik.errors[name]);
+  const fileName = formik.values[name] ? formik.values[name].name : null;
+
+  
+  
   return (
     <TextField
       type="file"
       label={label}
+      
       onChange={handleFileChange}
       fullWidth
       margin="normal"
       variant="outlined"
-    
+      value={formik.values[name] ? undefined : ''}
       onBlur={() => {
         if (name === 'Disabilitycertificate'|| name === 'Residency' || name==='Canceledcheck' || name==='Selfdeclartion' || name==='photo' ||name==='Applicantphoto' ||name==='quotation'||name==='sportcertificate'||name==='ubdertaking'||name==="oneyear"||name==='hopitlabillproof') {
           formik.setFieldTouched(name, true); 
@@ -29,7 +37,9 @@ const FileInput = ({ formik, name, label }) => {
           marginBottom:"30px"
         },
         sx: {
-          color: '#8DA399',
+          // backgroundColor:'#8DA399  ',
+          
+          color: 'white',
           fontSize: '12px',
           transform: 'translate(16px, 50%)',
           '&.MuiInputLabel-shrink': {
@@ -40,9 +50,10 @@ const FileInput = ({ formik, name, label }) => {
       
       InputLabelProps={{
         sx: {
-          fontSize: '15px',  
-          fontWeight: 'bold',  
-          transform: 'translate(0px, -1px)',
+          fontSize: '12px',  
+          // fontWeight: 'bold',  
+          transform: 'translate(16px, 50%)',
+          // color:'red'
        
         },
         shrink: true,

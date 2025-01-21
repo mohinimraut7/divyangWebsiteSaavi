@@ -9,6 +9,7 @@ import CommonButton from "../Components/CommonButton";
 import CommonTextField from "../Components/CommonTextField";
 import axios from "axios";
 import './ApplicationForm.css';
+import './ApplicationFormNew.css'
 import FileInput from "../Components/FileInput";
 import schemedata from "../data/dropdowndata/schemedata";
 import genderdata from "../data/dropdowndata/genderdata";
@@ -296,8 +297,17 @@ const ApplicantFormNew = ({ onClose }) => {
                 <Grid item xs={12} sm={6} md={6} lg={4}  sx={{mt:4.5}}>
                   <CommonTextField formik={formik} name="Relationship" label="दिव्यांग व्यक्तीचे अर्जदाराशी नाते" sx={{ width: "100%", }} />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={6} lg={4}>
+                  <Grid item xs={12} sm={6} md={6} lg={4} sx={{position:'relative'}}>
                   <FileInput formik={formik} name="Applicantphoto" label="अर्जदाराचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+                  {formik.values.Applicantphoto && formik.values.Applicantphoto.name && (
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+          >
+            {formik.values.Applicantphoto.name}
+          </Typography>
+        )}
                   </Grid>
               </>
             )}
@@ -591,28 +601,195 @@ const ApplicantFormNew = ({ onClose }) => {
                 {/* For Scheme 1 to 4 and 6 */}
                 {["वसई-विरार शहर महानगरपालिका हद्दीतील ४०% ते ५९% दिव्यांगत्व असलेल्या अंध, अस्थिव्यंग, बहुविकलांग, कर्णबधिर-मुकबधिर दिव्यांग व्यक्तींना मासिक रु. १,०००/- अनुदान देणेबाबत.", "वसई-विरार शहर महानगरपालिका हद्दीतील ६० ते ७९% दिव्यांगत्व असलेल्या अंध, अस्थिव्यंग, बहुविकलांग, कर्णबधिर-मुकबधिर दिव्यांग व्यक्तींना मासिक १.५००/- अनुदान देणेबाबत", "वसई-विरार शहर महानगरपालिका हद्दीतील ८०% ते१००% दिव्यांगत्व असलेल्या अंध, अस्थिव्यंग बहुविकलांग, कर्णबधिर-मुकबधिर दिव्यांग व्यक्तींना मासिक २,०००/- अनुदान देणेबाबत.", "वसई-विरार शहर महानगरपालिका हदीतील ६० वर्षातील दिव्यांगांना कायमस्वरुपी प्रोत्साहनात्मक प्रतिमाह रु. २,०००/- अनुदान देणेबाबत", "वसई-विरार शहर महानगरपालिका हद्दीतील १८ वर्षावरील गतिमंद-मतिमंद व्यक्तींच्या संगोपनासाठी प्रतिमाह २,०००/- अनुदान देणे बाबत."].includes(formik.values.Schemname) && (
                     <>
+
+<Grid item xs={12} sm={6} md={6} lg={4} sx={{position:'relative'}}>
+
                         <FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
                 " sx={{ width: "100%", mb: 2 }} type="file"/>
-                        <FileInput formik={formik} name="Residency" label="वसई विरार शहर महानगरपालिका हद्दीत राहत असल्याबाबतचा पुरावा रेशनकार्डची झेरॉक्स/वित्तीय वर्षाची घरपट्टीपावती झेरॉक्स / भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+                 {formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            className="filelabel"
+            sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+          >
+            {formik.values.Disabilitycertificate.name}
+          </Typography>
+        )}
+</Grid>
+
+<Grid item xs={12} sm={6} md={6} lg={4} sx={{position:'relative'}}>
+
                         <FileInput formik={formik} name="Canceledcheck" label="लाभार्थ्यांच्या नावाचा कॅन्सल चेक बँक पासबुक प्रत" sx={{ width: "100%", mb: 2 }} type="file"/>
-                        <FileInput formik={formik} name="Selfdeclartion" label="Self Declaration" sx={{ width: "100%", mb: 2 }} type="file"/>
-                        <FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+
+{formik.values.Canceledcheck && formik.values.Canceledcheck.name && (
+<Typography
+variant="body2"
+color="textSecondary"
+className="filelabel"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Canceledcheck.name}
+</Typography>
+)}
+</Grid>
+
+
+<Grid item xs={12} sm={6} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Selfdeclartion" label="Self Declaration" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Selfdeclartion && formik.values.Selfdeclartion.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Selfdeclartion.name}
+</Typography>
+)}
+</Grid>
+
+
+
+<Grid item xs={12} sm={6} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.photo && formik.values.photo.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.photo.name}
+</Typography>
+)}
+</Grid>
+
+
+<Grid item xs={12} sm={6} md={6} lg={4.2} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Residency" label="रेशनकार्ड/वित्तीय वर्षाची घरपट्टीपावती/ भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Residency && formik.values.Residency.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Residency.name}
+</Typography>
+)}
+</Grid>
+
                        
-                    </>
-                )}
+     </>
+   )}
 
 
 {/* For Scheme 5 */}
 {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांगांना स्वयंरोजगाराकरिता अनुदान देणे बाबत" && (
     <>
-        <FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
 " sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Residency" label="वसई विरार शहर महानगरपालिका हद्दीत राहत असल्याबाबतचा पुरावा रेशनकार्डची झेरॉक्स/वित्तीय वर्षाची घरपट्टीपावती झेरॉक्स / भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Canceledcheck" label="लाभार्थ्यांच्या नावाचा कॅन्सल चेक बँक पासबुक प्रत" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Selfdeclartion" label="Self Declaration" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
+<Typography
+variant="body2"
+color="textSecondary"
+
+className="filelabel"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Disabilitycertificate.name}
+</Typography>
+)}
+</Grid>
+                       
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Residency" label="रेशनकार्डची/घरपट्टीपावती/भाडेतत्वावर असल्यास करारनामा प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+
+{formik.values.Residency && formik.values.Residency.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Residency.name}
+</Typography>
+)}
+</Grid>
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Canceledcheck" label="लाभार्थ्यांच्या नावाचा कॅन्सल चेक बँक पासबुक प्रत" sx={{ width: "100%", mb: 2 }} type="file"/>
+
+
+{formik.values.Canceledcheck && formik.values.Canceledcheck.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Canceledcheck.name}
+</Typography>
+)}
+</Grid>
         
-        <FileInput formik={formik} name="quotation" label="व्यवसाय खर्चाचे अंदाजपत्रक (कोटेशन)" sx={{ width: "100%", mb: 2 }} type="file"/>
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="Selfdeclartion" label="Self Declaration" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Selfdeclartion && formik.values.Selfdeclartion.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Selfdeclartion.name}
+</Typography>
+)}
+</Grid>
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.photo && formik.values.photo.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.photo.name}
+</Typography>
+)}
+</Grid>
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="quotation" label="व्यवसाय खर्चाचे अंदाजपत्रक (कोटेशन)" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.quotation && formik.values.quotation.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.quotation.name}
+</Typography>
+)}
+</Grid>
+                
+        
+        
+        
     </>
 )}
 
@@ -620,17 +797,130 @@ const ApplicantFormNew = ({ onClose }) => {
 {/* For Scheme 7 */}
 {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील (दिव्यांग) खेळाडूंना प्रोत्साहानात्मक अनुदान देणे" && (
     <>
-     <FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
 " sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Residency" label="वसई विरार शहर महानगरपालिका हद्दीत राहत असल्याबाबतचा पुरावा रेशनकार्डची झेरॉक्स/वित्तीय वर्षाची घरपट्टीपावती झेरॉक्स / भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Canceledcheck" label="लाभार्थ्यांच्या नावाचा कॅन्सल चेक बँक पासबुक प्रत" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Selfdeclartion" label="स्वयंघोषणा पत्र" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Disabilitycertificate.name}
+</Typography>
+)}
+</Grid>
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टीपावती / भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Residency && formik.values.Residency.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Residency.name}
+</Typography>
+)}
+</Grid>
+
+
+    
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="Canceledcheck" label="लाभार्थ्यांच्या नावाचा कॅन्सल चेक बँक पासबुक प्रत" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Canceledcheck && formik.values.Canceledcheck.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Canceledcheck.name}
+</Typography>
+)}
+</Grid>
+
+
        
-      
-        <FileInput formik={formik} name="ubdertaking" label="रु.१००/- च्या स्टॅम्पपेपरवर व्यवसाया बाबतचे लेखी हमीपत्र." sx={{ width: "100%", mb: 2 }} type="file"/>
+
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="Selfdeclartion" label="स्वयंघोषणा पत्र" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Selfdeclartion && formik.values.Selfdeclartion.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Selfdeclartion.name}
+</Typography>
+)}
+</Grid>
+
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.photo && formik.values.photo.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.photo.name}
+</Typography>
+)}
+</Grid>
+
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="ubdertaking" label="रु.१००/- च्या स्टॅम्पपेपरवर व्यवसाया बाबतचे लेखी हमीपत्र." sx={{ width: "100%", mb: 2 }} type="file"/>
+
+{formik.values.ubdertaking && formik.values.ubdertaking.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.ubdertaking.name}
+</Typography>
+)}
+</Grid>
+
         
-        <FileInput formik={formik} name="sportcertificate" label="खेळाचे प्रमाणपत्र (रंगीत छायांकित प्रत)" sx={{ width: "100%", mb: 2 }} type="file"/>
+        
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<FileInput formik={formik} name="sportcertificate" label="खेळाचे प्रमाणपत्र (रंगीत छायांकित प्रत)" sx={{ width: "100%", mb: 2 }} type="file"/>
+
+{formik.values.sportcertificate && formik.values.sportcertificate.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.sportcertificate.name}
+</Typography>
+)}
+</Grid>
+
+      
+               
+        
     </>
 )}
 
@@ -638,16 +928,139 @@ const ApplicantFormNew = ({ onClose }) => {
 {/* For Scheme 8 */}
 {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांग व्यक्तींना व्याधीग्रस्त आजार, शस्त्रक्रिया त्या अनुषंगींक आजारानुसार खर्चाच्या २५% अर्थसहाय्य उपलब्ध करुन देणे बाबत." && (
     <>
-        <FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
 " sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Residency" label="वसई विरार शहर महानगरपालिका हद्दीत राहत असल्याबाबतचा पुरावा रेशनकार्डची झेरॉक्स/वित्तीय वर्षाची घरपट्टीपावती झेरॉक्स / भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Canceledcheck" label="लाभार्थ्यांच्या नावाचा कॅन्सल चेक बँक पासबुक प्रत
+{formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Disabilitycertificate.name}
+</Typography>
+)}
+</Grid>
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टीपावती/ भाडेतत्वावर असल्यास करारनामा प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Residency && formik.values.Residency.name && (
+<Typography
+variant="body2"
+color="textSecondary"
+className="filelabel"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Residency.name}
+</Typography>
+)}
+</Grid>
+
+
+
+
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Canceledcheck" label="लाभार्थ्यांच्या नावाचा कॅन्सल चेक बँक पासबुक प्रत
 " sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="Selfdeclartion" label="स्वयंघोषणा पत्र" sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
-       
-        <FileInput formik={formik} name="oneyear" label="खेळाचे प्रमाणपत्र मिळाल्यापासून एक (१) वर्षाचे आत अर्ज करणे बंधनकारक राहील." sx={{ width: "100%", mb: 2 }} type="file"/>
-        <FileInput formik={formik} name="hopitlabillproof" label="हॉस्पीटलचे मुळदेयक (बिल), चालू वर्षात उपचार घेत असल्याचे कागदपत्र. (डॉक्टरांनी प्रमाणित केलेली)" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Canceledcheck && formik.values.Canceledcheck.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Canceledcheck.name}
+</Typography>
+)}
+</Grid>
+
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="Selfdeclartion" label="स्वयंघोषणा पत्र" sx={{ width: "100%", mb: 2 }} type="file"/>
+{formik.values.Selfdeclartion && formik.values.Selfdeclartion.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.Selfdeclartion.name}
+</Typography>
+)}
+</Grid>
+
+
+
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="photo" label="दिव्यांगाचा फोटो" sx={{ width: "100%", mb: 2 }} type="file"/>
+
+{formik.values.photo && formik.values.photo.name && (
+<Typography
+variant="body2"
+color="textSecondary"
+className="filelabel"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.photo.name}
+</Typography>
+)}
+</Grid>
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="oneyear" label="खेळाचे प्रमाणपत्र मिळाल्यापासून एक (१) वर्षाचे आत अर्ज करणे बंधनकारक राहील." sx={{ width: "100%", mb: 2 }} type="file"/>
+
+
+{formik.values.oneyear && formik.values.oneyear.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.oneyear.name}
+</Typography>
+)}
+</Grid>
+
+
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+
+<FileInput formik={formik} name="hopitlabillproof" label="हॉस्पीटलचे मुळदेयक (बिल), चालू वर्षात उपचार घेत असल्याचे कागदपत्र. (डॉक्टरांनी प्रमाणित केलेली)" sx={{ width: "100%", mb: 2 }} type="file"/>
+
+
+{formik.values.hopitlabillproof && formik.values.hopitlabillproof.name && (
+<Typography
+variant="body2"
+className="filelabel"
+color="textSecondary"
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+>
+{formik.values.hopitlabillproof.name}
+</Typography>
+)}
+</Grid>
+        
+        
+               
+               
     </>
 )}
 

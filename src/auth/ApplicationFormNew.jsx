@@ -1161,6 +1161,7 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
         size="small"
         onClick={handlePreview}
         sx={{mr:1}}
+        disabled={Object.values(formik.values).every(value => value === "" || value === null)}
       >
         Preview
       </Button>

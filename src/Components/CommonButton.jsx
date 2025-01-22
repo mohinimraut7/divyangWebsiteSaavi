@@ -9,7 +9,6 @@ const CommonButton = ({ children,bgColor = '#1976d2', hoverColor = '#1565c0', ..
   return (
     <Button
       {...props}
-  
       sx={{
 
         fontSize: '16px',

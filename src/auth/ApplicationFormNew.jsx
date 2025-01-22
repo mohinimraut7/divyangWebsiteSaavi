@@ -21,13 +21,23 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ApplicantPreview from "../Components/Modals/ApplicantPreview";
 const ApplicantFormNew = ({ onClose }) => {
   const [open, setOpen] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const [user, setUser] = useState(null); 
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   
+  const handlePreview = () => {
+    console.log("Formik values:", formik.values);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const handleClose = () => {
     setOpen(false);
     if (onClose) onClose();
@@ -267,7 +277,7 @@ const ApplicantFormNew = ({ onClose }) => {
   };
 
   const steps = ["Basic Details Of Applicant","Basic Details Of Divyang", "Bank Details", "Documents"];
-
+console.log("testing formik.errors",formik.errors)
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',mt:5,}}>
       <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: "96%" }}>
@@ -277,13 +287,22 @@ const ApplicantFormNew = ({ onClose }) => {
 
         <Typography variant="h6" align="center" mb={2} sx={{fontWeight:'bold',color:'#007185'}}>दिव्यांग योजनेसाठी अर्ज</Typography>
 
-        <Stepper activeStep={activeStep} alternativeLabel color="success" sx={{mb:5}}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+          <Stepper activeStep={activeStep} alternativeLabel sx={{mb:5}}>
+            {steps.map((label,index) => (
+              <Step key={label}>
+                <StepLabel
+                StepIconProps={{
+                  sx: {
+                    fontSize: '2.5rem',
+                    color: activeStep === index ? 'green' : 'gray', 
+                  },
+                }}
+                >{label}
+                
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
 
         <Box sx={{ paddingBottom: 2 }}>
           <Grid container spacing={2}>
@@ -337,13 +356,13 @@ const ApplicantFormNew = ({ onClose }) => {
                 
 
 
-<Grid item xs={12} sm={12} md={12} lg={2.9}>
+<Grid item xs={12} sm={12} md={12} lg={2.9} sx={{border:'1px soild red'}}>
                  <Box>
                <FormControl fullWidth margin="normal" variant="outlined" 
                size="small"
                error={formik.touched.disability_in_percentage && Boolean(formik.errors.disability_in_percentage)}
                className='A-B-Input'>
-                   <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold' }}>अपंगत्वाची टक्केवारी</InputLabel>
+                   <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold',color: '#2F4F4F',}}>अपंगत्वाची टक्केवारी</InputLabel>
                    <Select
                        id="disability_in_percentage"
                        name="disability_in_percentage"
@@ -362,7 +381,7 @@ const ApplicantFormNew = ({ onClose }) => {
                        }}
                        sx={{
                          fontSize: '15px', 
-                        height:'40px'
+                        height:'40px',
                        }}
                    >
                        {disabilitypercentage.map((per,index) => (
@@ -389,7 +408,7 @@ const ApplicantFormNew = ({ onClose }) => {
                 size="small"
                 error={formik.touched.Gender && Boolean(formik.errors.Gender)}
                className='A-B-Input'>
-                   <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold' }}>दिव्यांग लाभार्थी</InputLabel>
+                   <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold',color: '#2F4F4F' }}>दिव्यांग लाभार्थी</InputLabel>
                    <Select
                        id="Gender"
                        name="Gender"
@@ -428,11 +447,12 @@ const ApplicantFormNew = ({ onClose }) => {
                 <Grid item xs={12} sm={12} md={12} lg={3.1}>
                   <Box>
                 <FormControl fullWidth margin="normal" variant="outlined" 
+                
                  size="small"
                  error={formik.touched.Marriagestatus && Boolean(formik.errors.Marriagestatus)}
         
                 className='A-B-Input'>
-                    <InputLabel id="ward-label" sx={{ fontSize: '15px', fontWeight: 'bold' }}>वैवाहिक स्थिती</InputLabel>
+                    <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold',color: '#2F4F4F' }}>वैवाहिक स्थिती</InputLabel>
                     <Select
                         id="Marriagestatus"
                         name="Marriagestatus"
@@ -476,7 +496,7 @@ const ApplicantFormNew = ({ onClose }) => {
                   error={formik.touched.Caste && Boolean(formik.errors.Caste)}
                    size="small"
                   className='A-B-Input'>
-                      <InputLabel id="ward-label" sx={{ fontSize: '15px', fontWeight: 'bold' }}>जात</InputLabel>
+                      <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold',color: '#2F4F4F' }}>जात</InputLabel>
                       <Select
                           id="Caste"
                           name="Caste"
@@ -555,7 +575,7 @@ const ApplicantFormNew = ({ onClose }) => {
 
 
       className='A-B-Input'>
-    <InputLabel id="ward-label" sx={{ fontSize: '15px', fontWeight: 'bold' }}>योजनेचे नाव</InputLabel>
+    <InputLabel id="ward-label" sx={{ fontSize: '12px', fontWeight: 'bold'}}>योजनेचे नाव</InputLabel>
     <Select
         id="Schemname"
         name="Schemname"
@@ -574,12 +594,13 @@ const ApplicantFormNew = ({ onClose }) => {
             },
         }}
         sx={{
-          fontSize: '15px', 
-          // height: '40px',
+          color: '#2F4F4F',
+          fontWeight:'bold',
+          fontSize: '12px',  
         }}
     >
         {schemedata.map((scheme, index) => (
-            <MenuItem key={index} value={scheme.title} sx={{fontSize:'15px',fontWeight:'bold',width:"500px"}}>
+            <MenuItem key={index} value={scheme.title} sx={{fontSize:'12px',fontWeight:'bold',width:"500px"}}>
                 {scheme.sname} - {scheme.title}
             </MenuItem>
         ))}
@@ -604,14 +625,20 @@ const ApplicantFormNew = ({ onClose }) => {
 
 <Grid item xs={12} sm={6} md={6} lg={4} sx={{position:'relative'}}>
 
-                        <FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
+                        <FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी नमुद असलेला.
                 " sx={{ width: "100%", mb: 2 }} type="file"/>
                  {formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
           <Typography
             variant="body2"
             color="textSecondary"
             className="filelabel"
-            sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+            sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',
+              bottom: (
+      formik.errors.disability_in_percentage ||
+      formik.errors.Canceledcheck ||
+      formik.errors.Selfdeclartion
+    ) ? '40%' : '27%',
+              left:'34%'}}
           >
             {formik.values.Disabilitycertificate.name}
           </Typography>
@@ -627,7 +654,14 @@ const ApplicantFormNew = ({ onClose }) => {
 variant="body2"
 color="textSecondary"
 className="filelabel"
-sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'34%'}}
+sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',
+  bottom: (
+    formik.errors.disability_in_percentage ||
+    formik.errors.Canceledcheck ||
+    formik.errors.Selfdeclartion
+  ) ? '40%' : '27%',
+
+left:'34%'}}
 >
 {formik.values.Canceledcheck.name}
 </Typography>
@@ -637,7 +671,7 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 
 <Grid item xs={12} sm={6} md={6} lg={4} sx={{position:'relative'}}>
 
-<FileInput formik={formik} name="Selfdeclartion" label="Self Declaration" sx={{ width: "100%", mb: 2 }} type="file"/>
+<FileInput formik={formik} name="Selfdeclartion" label="स्वयंघोषणा पत्र" sx={{ width: "100%", mb: 2 }} type="file"/>
 {formik.values.Selfdeclartion && formik.values.Selfdeclartion.name && (
 <Typography
 variant="body2"
@@ -670,7 +704,7 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 
 <Grid item xs={12} sm={6} md={6} lg={4.2} sx={{position:'relative'}}>
 
-<FileInput formik={formik} name="Residency" label="रेशनकार्ड/वित्तीय वर्षाची घरपट्टीपावती/ भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टी पावती/भाडेकराराची प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
 {formik.values.Residency && formik.values.Residency.name && (
 <Typography
 variant="body2"
@@ -691,9 +725,9 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 {/* For Scheme 5 */}
 {formik.values.Schemname === "वसई-विरार शहर महानगरपालिका हद्दीतील दिव्यांगांना स्वयंरोजगाराकरिता अनुदान देणे बाबत" && (
     <>
-<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative',boxSizing:'border-box'}}>
 
-<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
+<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी नमुद असलेला.
 " sx={{ width: "100%", mb: 2 }} type="file"/>
 {formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
 <Typography
@@ -708,9 +742,9 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 )}
 </Grid>
                        
-<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
+<Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative',boxSizing:'border-box'}}>
 
-<FileInput formik={formik} name="Residency" label="रेशनकार्डची/घरपट्टीपावती/भाडेतत्वावर असल्यास करारनामा प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टी/भाडेकराराची प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
 
 {formik.values.Residency && formik.values.Residency.name && (
 <Typography
@@ -800,7 +834,7 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 
 
 <Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
-<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
+<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी नमुद असलेला.
 " sx={{ width: "100%", mb: 2 }} type="file"/>
 {formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
 <Typography
@@ -817,7 +851,7 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 
 
 <Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
-<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टीपावती / भाडेतत्वावर असल्यास करारनामा प्रत / आधारकार्ड / मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टी/भाडेकराराची प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
 {formik.values.Residency && formik.values.Residency.name && (
 <Typography
 variant="body2"
@@ -931,7 +965,7 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 
 <Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
 
-<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी (प्रमाण) नमुद असलेला. (सक्षम प्राधिकाऱ्यांचा दाखला)
+<FileInput formik={formik} name="Disabilitycertificate" label="दिव्यांगत्व प्रमाणपत्र टक्केवारी नमुद असलेला.
 " sx={{ width: "100%", mb: 2 }} type="file"/>
 {formik.values.Disabilitycertificate && formik.values.Disabilitycertificate.name && (
 <Typography
@@ -949,7 +983,7 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 
 <Grid item xs={12} sm={12} md={6} lg={4} sx={{position:'relative'}}>
 
-<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टीपावती/ भाडेतत्वावर असल्यास करारनामा प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
+<FileInput formik={formik} name="Residency" label="रेशनकार्ड/घरपट्टी/भाडेकराराची प्रत/आधारकार्ड/मतदानकार्ड" sx={{ width: "100%", mb: 2 }} type="file"/>
 {formik.values.Residency && formik.values.Residency.name && (
 <Typography
 variant="body2"
@@ -1072,41 +1106,74 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           {activeStep > 0 && (
           
-            <ArrowBackIosNewOutlinedIcon  onClick={handleBack} variant="outlined"  sx={{fontSize:'50px',fontWeight:'bold',color:"#007185"}}/>
-            
-          )}
-
-          {activeStep < steps.length - 1 ? (
-         
-         
-          //  <ArrowForwardIosOutlinedIcon  onClick={handleNext} variant="outlined" sx={{fontSize:'50px',fontWeight:'bold',color:"#007185"}}/>
-          <Button
-  onClick={handleNext}
+          
+<Button
+  onClick={handleBack}
   variant="outlined"
+  size="small"
   sx={{
-    fontSize: '20px', 
     fontWeight: 'bold', 
     color: '#007185', 
     borderRadius: '20px',  
     borderColor: '#007185',  
-    padding: '10px 20px',  
     '&:hover': {
       borderColor: '#005f58', 
       backgroundColor: '#e0f4f1' 
     }
   }}
-  endIcon={<ArrowForwardIosOutlinedIcon sx={{ fontSize: '24px' }} />}
+  startIcon={<ArrowBackIosNewOutlinedIcon variant="outlined"/>}
+>
+  Back
+</Button>
+
+
+            
+            
+          )}
+
+         
+
+          {activeStep < steps.length - 1 ? (
+ <Button
+  onClick={handleNext}
+  variant="outlined"
+  size="small"
+  sx={{
+    fontWeight: 'bold', 
+    color: '#007185', 
+    borderRadius: '20px',  
+    borderColor: '#007185',  
+    '&:hover': {
+      borderColor: '#005f58', 
+      backgroundColor: '#e0f4f1' 
+    }
+  }}
+  endIcon={<ArrowForwardIosOutlinedIcon  sx={{ fontSize: '10px' }} />}
 >
   Next
 </Button>
 
           ) : (<>
-          {/* <Button>Preview</Button> */}
-          <CommonButton type="submit" variant="contained" color="primary">Submit</CommonButton>
+        
+        <Button
+        variant="contained"
+        size="small"
+        onClick={handlePreview}
+      >
+        Preview
+      </Button>
+
+      {/* ApplicantPreview Modal */}
+      {isModalOpen && (
+        <ApplicantPreview open={isModalOpen} onClose={handleCloseModal} formikValues={formik.values} />
+      )}
+
+          <CommonButton type="submit" color="primary" variant="outlined" size="small">Submit</CommonButton>
           </>
             
           )}
         </Box>
+        
       </Box>
     </Box>
 

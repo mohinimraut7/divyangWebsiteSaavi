@@ -1,4 +1,4 @@
-@media (max-width: 400px) {
+@media (max-width: 499.99px) {
     .filelabel{
 left:40% !important;
 bottom:25% !important;
@@ -6,3 +6,30 @@ font-size: 11px;
 font-weight: bold;
     }
 }
+
+@media (min-width: 500px) and (max-width:599.99px) {
+    .filelabel{
+        left:30% !important;
+        bottom:25% !important;
+        font-size: 11px;
+        font-weight: bold;
+            }
+  }
+  
+  @media (min-width: 600px) and (max-width:799.99px) {
+    .filelabel{
+        left:50% !important;
+        bottom:25% !important;
+        font-size: 11px;
+        font-weight: bold;
+            }
+  }
+
+  @media (min-width: 800px) and (max-width:899.99px) {
+    .filelabel{
+        left:35% !important;
+        bottom:25% !important;
+        font-size: 11px;
+        font-weight: bold;
+            }
+  }

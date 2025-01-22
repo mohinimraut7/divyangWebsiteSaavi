@@ -40,8 +40,9 @@ const CommonTextField = ({
       }}
       InputLabelProps={{
         sx: {
-          color: '#8DA399',
+          color: '#2F4F4F',
           fontSize: '12px',
+          fontWeight:'bold',
           transform: 'translate(16px, 50%)',
           '&.MuiInputLabel-shrink': {
             transform: 'translate(14px, -8px) scale(0.75)', 

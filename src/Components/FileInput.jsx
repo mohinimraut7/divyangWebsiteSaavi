@@ -34,25 +34,29 @@ const FileInput = ({ formik, name, label }) => {
       InputProps={{
         style: {
           height:'40px',
-          marginBottom:"30px"
+          marginBottom:"30px",
+          
         },
         sx: {
           // backgroundColor:'#8DA399  ',
           
           color: 'white',
           fontSize: '12px',
+          fontWeight:'bold',
           transform: 'translate(16px, 50%)',
           '&.MuiInputLabel-shrink': {
-            transform: 'translate(14px, -8px) scale(0.75)', 
+            transform: 'translate(18px, -8px) scale(0.75)', 
           },
         },
       }}
       
       InputLabelProps={{
         sx: {
+          color: '#2F4F4F',
+          fontWeight:'bold',
           fontSize: '12px',  
           // fontWeight: 'bold',  
-          transform: 'translate(16px, 50%)',
+          transform: 'translate(16px, 0%)',
           // color:'red'
        
         },

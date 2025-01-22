@@ -1154,21 +1154,26 @@ sx={{ marginTop: '5px', fontSize: '14px',position:'absolute',bottom:'27%',left:'
 </Button>
 
           ) : (<>
-        
+        <Box>
+           {/* ApplicantPreview Modal */}
         <Button
         variant="contained"
         size="small"
         onClick={handlePreview}
+        sx={{mr:1}}
       >
         Preview
       </Button>
-
-      {/* ApplicantPreview Modal */}
       {isModalOpen && (
         <ApplicantPreview open={isModalOpen} onClose={handleCloseModal} formikValues={formik.values} />
       )}
+ <Button type="submit" color="primary" variant="contained" size="small">Submit</Button>
+        </Box>
+        
 
-          <CommonButton type="submit" color="primary" variant="outlined" size="small">Submit</CommonButton>
+     
+     
+         
           </>
             
           )}

@@ -164,7 +164,7 @@ const ApplicantPreview = ({ open, onClose, formikValues }) => {
               >
                 {row.map(([key, value]) => (
                   <React.Fragment key={key}>
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} md={6} lg={3} xl={3}>
                       <Typography
                         variant="body2" // Smaller font size
                         sx={{
@@ -177,7 +177,7 @@ const ApplicantPreview = ({ open, onClose, formikValues }) => {
                         {key.replace(/_/g, " ")}:
                       </Typography>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} md={6} lg={3} xl={3}>
                       <Typography
                         variant="body2"
                         sx={{

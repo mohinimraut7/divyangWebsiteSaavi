@@ -276,8 +276,23 @@ const ApplicantFormNew = ({ onClose }) => {
     setActiveStep((prevStep) => prevStep - 1);
   };
 
-  const steps = ["Basic Details Of Applicant","Basic Details Of Divyang", "Bank Details", "Documents"];
-console.log("testing formik.errors",formik.errors)
+  // const steps = ["Basic Details Of Applicant","Basic Details Of Divyang", "Bank Details", "Documents"];
+
+
+  const hasErrors = (fields, errors, touched) => {
+    return fields.some((field) => touched[field] && errors[field]);
+  };
+
+  const steps = [
+    { label: "Basic Details Of Applicant", fields: ["name","Relationship","Applicantphoto"] },
+    { label: "Basic Details Of Divyang", fields: ["divyangname","mobileno","Education,age"] },
+    { label: "Bank Details", fields: ["IFSC_CODE","BranchName","AccountNo" ] },
+    { label: "Documents", fields: ["AdhaarCard","Ration_lightbill","Schemname","sportstype","Disabilitycertificate","Canceledcheck","Selfdeclartion","photo","Residency",
+      "quotation","ubdertaking","sportcertificate","oneyear","hopitlabillproof"] },
+    
+    // Add additional steps and fields as needed"
+  ];
+  
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',mt:5,}}>
       <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: "96%" }}>
@@ -287,9 +302,11 @@ console.log("testing formik.errors",formik.errors)
 
         <Typography variant="h6" align="center" mb={2} sx={{fontWeight:'bold',color:'#007185'}}>दिव्यांग योजनेसाठी अर्ज</Typography>
 
-          <Stepper activeStep={activeStep} alternativeLabel sx={{mb:5}}>
-            {steps.map((label,index) => (
-              <Step key={label}>
+          {/* <Stepper activeStep={activeStep} alternativeLabel sx={{mb:5}}>
+            {steps.map((label,index) => {
+              console.log("index and activeSte",index,activeStep)
+              return(
+<Step key={label}>
                 <StepLabel
                 StepIconProps={{
                   sx: {
@@ -301,8 +318,27 @@ console.log("testing formik.errors",formik.errors)
                 
                 </StepLabel>
               </Step>
-            ))}
-          </Stepper>
+              )
+              
+            }
+            )}
+          </Stepper> */}
+          {/* ---------------------------------------------------------------------------- */}
+          <Stepper activeStep={activeStep} alternativeLabel>
+      {steps.map((step, index) => (
+        <Step key={index} completed={formik.isValid && formik.touched}>
+          <StepLabel
+            error={
+              hasErrors(step.fields, formik.errors, formik.touched) &&
+              activeStep > index
+            }
+          >
+            {step.label}
+          </StepLabel>
+        </Step>
+      ))}
+    </Stepper>
+
 
         <Box sx={{ paddingBottom: 2 }}>
           <Grid container spacing={2}>
@@ -542,13 +578,13 @@ console.log("testing formik.errors",formik.errors)
 
             {activeStep === 2 && (
               <>
-                <Grid item xs={12} sm={6} md={6} lg={4}>
+                <Grid item xs={12} sm={6} md={6} lg={4} sx={{mt:3}}>
                   <CommonTextField formik={formik} name="IFSC_CODE" label="बँकेचा IFSC CODE" sx={{ width: "100%", mb: 2 }} />
                 </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={4}>
+                <Grid item xs={12} sm={6} md={6} lg={4} sx={{mt:3}}>
                   <CommonTextField formik={formik} name="BranchName" label="बँकेची शाखा" sx={{ width: "100%", mb: 2 }} />
                 </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={4}>
+                <Grid item xs={12} sm={6} md={6} lg={4} sx={{mt:3}}>
                   <CommonTextField formik={formik} name="AccountNo" label="खाते क्रमांक" sx={{ width: "100%", mb: 2 }} />
                 </Grid>
               </>

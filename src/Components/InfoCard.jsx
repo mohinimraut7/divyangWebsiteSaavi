@@ -13,7 +13,7 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
   };
   const location = useLocation();
   const cardHeight = 
-  location.pathname === "/schemes" ? 305 : 
+  location.pathname === "/schemes" ? 450 : 
   location.pathname === "/about" ? 300 : 
   location.pathname === "/" ? 300 : 
   280;
@@ -26,10 +26,11 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
         sx={{
           borderRadius: "5px",
           boxShadow: 3,
-          margin: 2,
+          // margin: 2,
           display: "flex",
           flexDirection: "column",
           height: cardHeight,
+          width:'100%',
           justifyContent: "space-between",
           "&:hover": {
             transform: "scale(1.01)",
@@ -42,11 +43,11 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
           <CardMedia
             component="img"
             sx={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "30px",
+              width: "90px",
+              height: "90px",
+              borderRadius: "45px",
               margin: "auto",
-              mt: 1,
+              mt:1
             }}
             image={image}
             alt="Profile Image"
@@ -57,19 +58,24 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
             variant="h6"
             sx={{
               fontWeight: "bold",
-              fontSize: "18px",
+              fontSize: "22.5px",
               textAlign: "center",
-              color: "#2c3e50",
+              color: "#061E37",
+              mt:1.5
             }}
           >
             {title}
           </Typography>
           <Typography
-            variant="body2"
+          textAlign="justify"
+           
             sx={{
-              textAlign: "center",
-              color: "#7f8c8d",
-              mt: 1,
+            fontWeight:600,
+              fontSize:'16.9px',
+              color: "#656565",
+
+              mt: 2,
+              
             }}
           >
             {subtitle}
@@ -79,7 +85,8 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
         <Box sx={{ textAlign: "center", paddingBottom: "10px" }}>
           <Typography
             variant="body2"
-            sx={{ color: "#2980b9", cursor: "pointer" }}
+            
+            sx={{ color: "#1976D2", cursor: "pointer",fontWeight:'bold' }}
             onClick={handleDownload} 
           >
             डाउनलोड हमीपत्र 

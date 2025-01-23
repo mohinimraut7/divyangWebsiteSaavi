@@ -12,7 +12,7 @@ const Footer = () => {
         overflow: "hidden",
         backgroundColor: "#007185",
         color: "#fff",
-        mt: 26,
+        mt: 25,
         pt: 5,
         pb: 4,
       }}

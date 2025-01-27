@@ -328,6 +328,9 @@ const ApplicantFormNew = ({ onClose }) => {
       {steps.map((step, index) => (
         <Step key={index} completed={formik.isValid && formik.touched}>
           <StepLabel
+            StepIconProps={{
+              sx: { fontSize: '3rem' }, // Adjust the icon size here
+            }}
             error={
               hasErrors(step.fields, formik.errors, formik.touched) &&
               activeStep > index

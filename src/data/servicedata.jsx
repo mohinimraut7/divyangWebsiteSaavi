@@ -40,7 +40,8 @@ const servicedata = [
        selfdeclarion:hamipatra5
     },
     {
-      image: "https://scontent-bom2-2.xx.fbcdn.net/v/t39.30808-6/429589402_1458103095080027_6195253540612601425_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=3snVb1vqoowQ7kNvgFkTN5g&_nc_zt=23&_nc_ht=scontent-bom2-2.xx&_nc_gid=AZwdBEcEqqUEAtWRqfy8uLc&oh=00_AYATG8vLFtnlIokCXHQrfSmD_7SQcQgVhPZV7SR5kDVH5w&oe=678352C9",
+      image: "https://media.istockphoto.com/id/1466794669/photo/portrait-of-a-visually-impaired-man-in-the-street.jpg?s=1024x1024&w=is&k=20&c=ILm_ABmQb6R1DdfpaezB3Xe1nzVBRPEjt-ORpQz5kqQ=",
+
       title: "गतिमंद-मतिमंद संगोपन रु.२,000 अनुदान योजना",
       description: " वसई-विरार शहर महानगरपालिका हद्दीतील १८ वर्षावरील गतिमंद-मतिमंद व्यक्तींच्या संगोपनासाठी प्रतिमाह २,०००/- अनुदान देणे बाबत.",
        selfdeclarion:hamipatra6

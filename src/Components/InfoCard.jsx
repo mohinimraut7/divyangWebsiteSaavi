@@ -14,8 +14,8 @@ function InfoCard({ title, subtitle, image, downloadLink }) {
   const location = useLocation();
   const cardHeight = 
   location.pathname === "/schemes" ? 450 : 
-  location.pathname === "/about" ? 300 : 
-  location.pathname === "/" ? 300 : 
+  location.pathname === "/about" ? 450 : 
+  location.pathname === "/" ? 450 : 
   280;
   return (
     <NavLink

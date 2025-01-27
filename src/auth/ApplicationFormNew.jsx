@@ -268,10 +268,40 @@ const ApplicantFormNew = ({ onClose }) => {
     },
   });
 
-  const handleNext = () => {
+  // const handleNext = async () => {
+  //   const currentStepFields = steps[activeStep].fields; // सध्याच्या स्टेपच्या फील्ड्स
+  //   const errors = await formik.validateForm(); // संपूर्ण फॉर्म वैधता तपासा
+  
+  //   // फक्त सध्याच्या स्टेपशी संबंधित फील्ड्स च्या एरर तपासा
+  //   const hasErrors = currentStepFields.some((field) => errors[field]);
+  
+  //   if (hasErrors) {
+  //     // एरर असल्यास पुढे जाऊ नका
+  //     currentStepFields.forEach((field) => formik.setFieldTouched(field, true));
+  //     return;
+  //   }
+  
+  //   // पुढच्या स्टेपला जा
+  //   setActiveStep((prevStep) => prevStep + 1);
+  // };
+
+  
+  const handleNext = async () => {
+    const currentStepFields = steps[activeStep].fields; // सध्याच्या स्टेपच्या फील्ड्स
+    const errors = await formik.validateForm(); // संपूर्ण फॉर्मसाठी एरर तपासा
+  
+    // फक्त सध्याच्या स्टेपशी संबंधित फील्ड्ससाठी एरर तपासा
+    const hasErrors = currentStepFields.some((field) => errors[field]);
+  
+    if (hasErrors) {
+      // सध्याच्या फील्ड्सना 'touched' सेट करा, पण पुढे जाऊ द्या
+      currentStepFields.forEach((field) => formik.setFieldTouched(field, true));
+    }
+  
+    // पुढच्या स्टेपला जा
     setActiveStep((prevStep) => prevStep + 1);
   };
-
+  
   const handleBack = () => {
     setActiveStep((prevStep) => prevStep - 1);
   };
@@ -324,23 +354,47 @@ const ApplicantFormNew = ({ onClose }) => {
             )}
           </Stepper> */}
           {/* ---------------------------------------------------------------------------- */}
-          <Stepper activeStep={activeStep} alternativeLabel>
+          {/* <Stepper activeStep={activeStep} alternativeLabel>
       {steps.map((step, index) => (
         <Step key={index} completed={formik.isValid && formik.touched}>
           <StepLabel
             StepIconProps={{
-              sx: { fontSize: '3rem' }, // Adjust the icon size here
+              sx: {
+                fontSize: "3rem", // StepIcon मोठं दिसण्यासाठी
+                color: activeStep === index ? "primary.main" : "text.disabled", // सध्या असलेल्या स्टेपचा रंग ठळक करा
+              },
+              children: index + 1, // StepIcon मध्ये नंबर दाखवतो
             }}
             error={
-              hasErrors(step.fields, formik.errors, formik.touched) &&
-              activeStep > index
+              hasErrors(step.fields, formik.errors, formik.touched) && activeStep > index
             }
           >
             {step.label}
           </StepLabel>
         </Step>
       ))}
-    </Stepper>
+    </Stepper> */}
+{/* ------------------------------------------------ */}
+<Stepper activeStep={activeStep} alternativeLabel>
+  {steps.map((step, index) => (
+    <Step key={index}>
+      <StepLabel
+        StepIconProps={{
+          sx: {
+            fontSize: "3rem", // StepIcon मोठं दिसण्यासाठी
+            color: activeStep === index ? "primary.main" : "text.disabled", // सध्या असलेल्या स्टेपचा रंग ठळक करा
+          },
+          children: index + 1, // StepIcon मध्ये नंबर दाखवतो
+        }}
+        error={
+          hasErrors(step.fields, formik.errors, formik.touched) && activeStep > index
+        }
+      >
+        {step.label}
+      </StepLabel>
+    </Step>
+  ))}
+</Stepper>
 
 
         <Box sx={{ paddingBottom: 2 }}>

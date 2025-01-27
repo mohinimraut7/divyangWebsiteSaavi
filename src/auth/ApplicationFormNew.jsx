@@ -429,21 +429,58 @@ const ApplicantFormNew = ({ onClose }) => {
             {activeStep === 1 && (
               <>
                 
-                <Grid item xs={12} sm={6} md={6} lg={2.9}>
+                <Grid item xs={12} sm={6} md={6} lg={2.9} 
+                sx={{
+                   mt: {
+                    xs:2,
+                    sm:2,
+                    lg:5,
+                    lg:5,
+                    xl:5
+                  }
+                }}>
                   <CommonTextField formik={formik} name="divyangname" label="दिव्यांग व्यक्तीचे पूर्ण नाव" sx={{ width: "100%", mb: 2 }} />
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={6} lg={2.9}>
+                <Grid item xs={12} sm={6} md={6} lg={2.9} sx={{
+                   mt: {
+                    xs:2,
+                    sm:2,
+                    lg:5,
+                    lg:5,
+                    xl:5
+                  }
+                }}>
                   <CommonTextField formik={formik} name="mobileno" label="दिव्यांग व्यक्तीचा मोबाईल क्रमांक" sx={{ width: "100%", mb: 2 }} inputProps={{ maxLength: 10 }} />
                 </Grid>
                
 
-                <Grid item xs={12} sm={6} md={6} lg={2.9}>
+                <Grid item xs={12} sm={6} md={6} lg={2.9} 
+                sx={{
+                  mt: {
+                   xs:2,
+                   sm:2,
+                   lg:5,
+                   lg:5,
+                   xl:5
+                 }
+               }}>
+                
                   <CommonTextField formik={formik} name="Education" label="शिक्षण" sx={{ width: "100%", mb: 2 }} />
                   </Grid>
                
                   
-                  <Grid item xs={12} sm={6} md={3.3}>
+                  <Grid item xs={12} sm={6} md={3.3}
+                  sx={{
+                    mt: {
+                     xs:2,
+                     sm:2,
+                     lg:5,
+                     lg:5,
+                     xl:5
+                   }
+                 }}>
+                  
                   <CommonTextField formik={formik} name="age" label="जन्म तारीख" type="date" InputLabelProps={{ shrink: true }} sx={{ width: "100%", mb: 2 }} />
                 </Grid>
                 
@@ -635,23 +672,7 @@ const ApplicantFormNew = ({ onClose }) => {
 
             {activeStep === 2 && (
               <>
-                <Grid item xs={12} sm={6} md={6} lg={4} sx={{mt:3}}>
-                  <CommonTextField formik={formik} name="IFSC_CODE" label="बँकेचा IFSC CODE" sx={{ width: "100%", mb: 2 }} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={4} sx={{mt:3}}>
-                  <CommonTextField formik={formik} name="BranchName" label="बँकेची शाखा" sx={{ width: "100%", mb: 2 }} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={4} sx={{mt:3}}>
-                  <CommonTextField formik={formik} name="AccountNo" label="खाते क्रमांक" sx={{ width: "100%", mb: 2 }} />
-                </Grid>
-              </>
-            )}
-
-            {activeStep === 3 && (
-              <>
-                <Grid item xs={12} sm={6} md={6} lg={4}>
-                 
-                 <CommonTextField formik={formik} name="AdhaarCard" label="आधार कार्ड नंबर" sx={{ width: "100%",
+                <Grid item xs={12} sm={6} md={6} lg={4} sx={{
                   mt: {
                     xs:2,
                     sm:2,
@@ -659,31 +680,83 @@ const ApplicantFormNew = ({ onClose }) => {
                     lg:5,
                     xl:5
                   }
-                 }}  inputProps={{
-                     maxLength: 12  
-                   }}/>
-                 </Grid>
-                  <Grid item xs={12} sm={6} md={6} lg={4}>
-                  
-                   <CommonTextField formik={formik} name="Ration_lightbill" label="रेशनकार्ड नंबर/इलेक्ट्रोसोटी मीटर नंबर" sx={{ width: "100%",  mt: {
+                }}>
+                  <CommonTextField formik={formik} name="IFSC_CODE" label="बँकेचा IFSC CODE" sx={{ width: "100%", mb: 2 }} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={4} sx={{
+                  mt: {
                     xs:2,
                     sm:2,
                     lg:5,
                     lg:5,
                     xl:5
-                  }}} />
+                  }
+                }}
+                
+                >
+                  <CommonTextField formik={formik} name="BranchName" label="बँकेची शाखा" sx={{ width: "100%", mb: 2 }} />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={4} sx={{
+                  mt: {
+                    xs:2,
+                    sm:2,
+                    lg:5,
+                    lg:5,
+                    xl:5
+                  }
+                }}>
+                  <CommonTextField formik={formik} name="AccountNo" label="खाते क्रमांक" sx={{ width: "100%", mb: 2 }} />
+                </Grid>
+              </>
+            )}
+
+            {activeStep === 3 && (
+              <>
+                <Grid item xs={12} sm={6} md={6} lg={4}
+                sx={{
+                  mt: {
+                    xs:2,
+                    sm:2,
+                    lg:5,
+                    lg:5,
+                    xl:5
+                  }
+                }}
+                >
+                 
+                 <CommonTextField formik={formik} name="AdhaarCard" label="आधार कार्ड नंबर" sx={{ width: "100%",
+                 
+                 }}  inputProps={{
+                     maxLength: 12  
+                   }}/>
+                 </Grid>
+                  <Grid item xs={12} sm={6} md={6} lg={4} 
+                  sx={{
+                    mt: {
+                      xs:2,
+                      sm:2,
+                      lg:5,
+                      lg:5,
+                      xl:5
+                    }
+                  }}
+                  >
+                  
+                   <CommonTextField formik={formik} name="Ration_lightbill" label="रेशनकार्ड नंबर/इलेक्ट्रोसोटी मीटर नंबर" sx={{ width: "100%",  }} />
                    </Grid>
-                   <Grid item xs={12} sm={12} md={12} lg={4}>
+
+
+       <Grid item xs={12} sm={12} md={12} lg={4} >
  
-  <Box>
-      <FormControl fullWidth margin="normal" variant="outlined"
-      sx={{ mt: {
+  <Box sx={{mt: {
         xs:2,
         sm:2,
-        lg:5,
-        lg:5,
-        xl:5
-      }}}
+      md:3,
+        lg:3,
+        xl:3
+      }}}>
+      <FormControl fullWidth margin="normal" variant="outlined"
+      sx={{ }}
       size="small"
          error={formik.touched.Schemname && Boolean(formik.errors.Schemname)}
 

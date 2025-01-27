@@ -651,18 +651,39 @@ const ApplicantFormNew = ({ onClose }) => {
               <>
                 <Grid item xs={12} sm={6} md={6} lg={4}>
                  
-                 <CommonTextField formik={formik} name="AdhaarCard" label="आधार कार्ड नंबर" sx={{ width: "100%", mt: 2 }}  inputProps={{
+                 <CommonTextField formik={formik} name="AdhaarCard" label="आधार कार्ड नंबर" sx={{ width: "100%",
+                  mt: {
+                    xs:2,
+                    sm:2,
+                    lg:5,
+                    lg:5,
+                    xl:5
+                  }
+                 }}  inputProps={{
                      maxLength: 12  
                    }}/>
                  </Grid>
                   <Grid item xs={12} sm={6} md={6} lg={4}>
                   
-                   <CommonTextField formik={formik} name="Ration_lightbill" label="रेशनकार्ड नंबर/इलेक्ट्रोसोटी मीटर नंबर" sx={{ width: "100%", mt: 2 }} />
+                   <CommonTextField formik={formik} name="Ration_lightbill" label="रेशनकार्ड नंबर/इलेक्ट्रोसोटी मीटर नंबर" sx={{ width: "100%",  mt: {
+                    xs:2,
+                    sm:2,
+                    lg:5,
+                    lg:5,
+                    xl:5
+                  }}} />
                    </Grid>
                    <Grid item xs={12} sm={12} md={12} lg={4}>
  
   <Box>
       <FormControl fullWidth margin="normal" variant="outlined"
+      sx={{ mt: {
+        xs:2,
+        sm:2,
+        lg:5,
+        lg:5,
+        xl:5
+      }}}
       size="small"
          error={formik.touched.Schemname && Boolean(formik.errors.Schemname)}
 

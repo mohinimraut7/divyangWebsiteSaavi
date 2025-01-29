@@ -5,7 +5,8 @@ import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 function InfoCard({ title, subtitle, image, downloadLink }) {
   const handleDownload = (event) => {
-   event.stopPropagation();
+    event.preventDefault(); // Prevent NavLink redirection
+    event.stopPropagation(); 
     const link = document.createElement("a");
     link.href = downloadLink;
     link.download = downloadLink.split("/").pop();
